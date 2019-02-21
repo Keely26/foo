@@ -6,10 +6,6 @@
       <change afterPath="$PROJECT_DIR$/../PHQ-9_Test/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../PHQ-9_Test/src/Bipolar.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../PHQ-9_Test/src/Depression.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mytest/Participation/Discount_1000_test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mytest/Participation/Discount_5pack_test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ANTLR_CSV_to_JSON/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ANTLR_CSV_to_JSON/Hello.g4" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../CSCI476_Assignment2/.idea/encodings.xml" beforeDir="false" />
@@ -21,6 +17,14 @@
       <change beforePath="$PROJECT_DIR$/../CSCI476_Assignment2/Data/memorydump.dmp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../CSCI476_Assignment2/out/production/CSCI476_Assignment2/validator.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../CSCI476_Assignment2/src/validator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodata" beforeDir="false" afterPath="$PROJECT_DIR$/foodata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mytest/Participation/Customer_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/mytest/Participation/Customer_test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mytest/Participation/Discount_1000_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/mytest/Participation/Discount_1000_test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mytest/Participation/Discount_5pack_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/mytest/Participation/Discount_5pack_test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/test/foo/Participation/Customer_test.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/test/foo/Participation/Customer_test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/test/foo/Participation/Discount_1000_test.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/test/foo/Participation/Discount_1000_test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/test/foo/Participation/Discount_5pack_test.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/test/foo/Participation/Discount_5pack_test.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +37,7 @@
     <SUITE FILE_PATH="coverage/foo$Customer_test.ic" NAME="Customer_test Coverage Results" MODIFIED="1550775953253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Participation.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/foo$All_in_foo.ic" NAME="All in foo Coverage Results" MODIFIED="1550780095776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/foo$All_in_foo.ic" NAME="All in foo Coverage Results" MODIFIED="1550782292915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/foo$Customer_test_getDiscountValueTest.ic" NAME="Customer_test.getDiscountValueTest Coverage Results" MODIFIED="1550778178882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Participation.*</FILTER>
     </SUITE>
@@ -42,26 +46,14 @@
     <option name="myElementSize" value="15" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.529148">
+    <splitter split-orientation="horizontal" split-proportion="0.5650224">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/mytest/Participation/Discount_1000_test.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="10" selection-start-line="10" selection-end-line="10" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/mytest/Participation/Customer_test.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1155">
-                  <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+                <state relative-caret-position="450">
+                  <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -70,17 +62,12 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mytest/Participation/Testing_Discount.java">
+            <entry file="file://$PROJECT_DIR$/mytest/Participation/Customer_test.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+                <state relative-caret-position="-115">
+                  <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
                   <folding>
-                    <element signature="e#143#144#0" expanded="true" />
-                    <element signature="e#171#172#0" expanded="true" />
-                    <element signature="e#242#243#0" expanded="true" />
-                    <element signature="e#266#267#0" expanded="true" />
-                    <element signature="e#315#316#0" expanded="true" />
-                    <element signature="e#342#343#0" expanded="true" />
+                    <element signature="imports" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -89,8 +76,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/mytest/Participation/Discount_5pack_test.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="12" selection-start-line="12" selection-end-line="12" />
+                <state relative-caret-position="181">
+                  <caret line="15" selection-start-line="15" selection-end-line="17" selection-end-column="58" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -101,8 +88,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/mytest/Participation/ApplicationLogic_test.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1005">
-                  <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+                <state relative-caret-position="106">
+                  <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
@@ -114,7 +101,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Participation/Discount_1000.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="465">
+                <state relative-caret-position="227">
                   <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
                   <folding>
                     <element signature="e#462#463#0" expanded="true" />
@@ -124,29 +111,20 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Participation/Customer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1164">
+                <state relative-caret-position="-1570">
                   <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="20" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Participation/Discount.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="510">
-                  <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Participation/Discount_5pack.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+                <state relative-caret-position="502">
+                  <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
                 </state>
               </provider>
             </entry>
@@ -154,7 +132,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Participation/ApplicationLogic.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="615">
+                <state relative-caret-position="-2453">
                   <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
                 </state>
               </provider>
@@ -172,20 +150,20 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Participation/Customer.java" />
-        <option value="$PROJECT_DIR$/mytest/Participation/Discount_1000_test.java" />
-        <option value="$PROJECT_DIR$/mytest/Participation/Discount_5pack_test.java" />
         <option value="$PROJECT_DIR$/mytest/Participation/ApplicationLogic_test.java" />
         <option value="$PROJECT_DIR$/src/Participation/Discount_1000.java" />
         <option value="$PROJECT_DIR$/src/Participation/Testing_Discount.java" />
         <option value="$PROJECT_DIR$/src/Participation/Discount.java" />
         <option value="$PROJECT_DIR$/mytest/Participation/Testing_Discount.java" />
         <option value="$PROJECT_DIR$/mytest/Participation/Customer_test.java" />
+        <option value="$PROJECT_DIR$/mytest/Participation/Discount_5pack_test.java" />
+        <option value="$PROJECT_DIR$/mytest/Participation/Discount_1000_test.java" />
       </list>
     </option>
   </component>
@@ -244,7 +222,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550780334471" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550782291414" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/mytest/Participation" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -359,26 +337,11 @@
       <updated>1550685160717</updated>
       <workItem from="1550685163932" duration="566000" />
       <workItem from="1550692149093" duration="2758000" />
-      <workItem from="1550774054811" duration="4354000" />
+      <workItem from="1550774054811" duration="6176000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Customer_test_getDiscountValueTest - 2019.02.21 at 12h 46m 54s.xml">
-      <configuration name="Customer_test.getDiscountValueTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_foo - 2019.02.21 at 12h 47m 24s.xml">
-      <configuration name="All in foo" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_foo - 2019.02.21 at 12h 47m 39s.xml">
-      <configuration name="All in foo" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_foo - 2019.02.21 at 12h 48m 48s.xml">
-      <configuration name="All in foo" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_foo - 2019.02.21 at 12h 49m 05s.xml">
-      <configuration name="All in foo" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="All_in_foo - 2019.02.21 at 12h 54m 10s.xml">
       <configuration name="All in foo" configurationId="JUnit" />
     </history-entry>
@@ -394,14 +357,30 @@
     <history-entry file="All_in_foo - 2019.02.21 at 13h 14m 58s.xml">
       <configuration name="All in foo" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="All_in_foo - 2019.02.21 at 13h 31m 10s.xml">
+      <configuration name="All in foo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_foo - 2019.02.21 at 13h 33m 14s.xml">
+      <configuration name="All in foo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_foo - 2019.02.21 at 13h 33m 20s.xml">
+      <configuration name="All in foo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_foo - 2019.02.21 at 13h 46m 30s.xml">
+      <configuration name="All in foo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_foo - 2019.02.21 at 13h 46m 39s.xml">
+      <configuration name="All in foo" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7678000" />
+    <option name="totallyTimeSpent" value="9500000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="775" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.040927693" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.021459227" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -410,12 +389,12 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.47108433" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.29156625" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.25662652" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32891566" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.22891566" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32891566" />
@@ -431,54 +410,13 @@
       <window_info anchor="right" id="Database" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info anchor="right" id="Coverage" order="10" side_tool="true" visible="true" weight="0.040927693" />
+      <window_info active="true" anchor="right" id="Coverage" order="10" side_tool="true" visible="true" weight="0.021459227" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mytest/Participation/Discount_1000_test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mytest/Participation/Discount_5pack_test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mytest/Participation/ApplicationLogic_test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Participation/Discount_5pack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Participation/ApplicationLogic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Participation/Participation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -493,21 +431,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Participation/Discount_1000.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-          <folding>
-            <element signature="e#462#463#0" expanded="true" />
-            <element signature="e#481#482#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mytest/Participation/Testing_Discount.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+        <state relative-caret-position="165">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
             <element signature="e#143#144#0" expanded="true" />
             <element signature="e#171#172#0" expanded="true" />
@@ -526,17 +453,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Participation/Customer.java">
+    <entry file="file://$PROJECT_DIR$/src/Participation/ApplicationLogic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1164">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="20" />
+        <state relative-caret-position="-2453">
+          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mytest/Participation/ApplicationLogic_test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Participation/Discount_1000.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+          <folding>
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#481#482#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mytest/Participation/Customer_test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+        <state relative-caret-position="-115">
+          <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Participation/Customer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1570">
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Participation/Discount_5pack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mytest/Participation/Discount_5pack_test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="15" selection-start-line="15" selection-end-line="17" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mytest/Participation/Discount_1000_test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

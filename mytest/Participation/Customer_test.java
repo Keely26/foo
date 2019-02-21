@@ -9,20 +9,6 @@ import static org.junit.Assert.* ;
  */
 public class Customer_test {
 
-//	@Test
-//	public void test1() {
-//		System.out.println("Provide here a short description of your test purpose here...") ;
-//		Customer C = new Customer(0,"Duffy Duck","") ;
-//		assertTrue(C.getCostToPayTest() == 0) ;
-//	}
-//
-//	@Test
-//	public void test2() {
-//		System.out.println("Provide a short description...") ;
-//		// an example of test that fails, in this case trivially:
-//		assertTrue(1/0 == 0) ;
-//	}
-
 	@Test
 	public void getParticipationValueTest(){
 		Customer C = new Customer(0,"name", "name@email.com");
