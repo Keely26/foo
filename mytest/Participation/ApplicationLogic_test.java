@@ -1,5 +1,8 @@
 package Participation;
 import org.junit.* ;
+
+import java.util.Map;
+
 import static org.junit.Assert.* ;
 
 /**
@@ -21,53 +24,84 @@ public class ApplicationLogic_test {
 	private void setupDB() {
 		Persistence.wipedb() ;
 	}
-	
-	
+
 	@Test
-	public void test1() {
-		// We'll always begin by reseting the database. This makes sure
-		// the test start from a clean, well defined state of the database.
-		// In this case it would be just an empty database, though it 
-		// doesn't have to be like that.
+	public void removeServiceTest(){
 		setupDB() ;
-		
-		System.out.println("** Testing add customer...") ;
-		
-		// Creating the target thing you want to test:
+		System.out.println("** Testing ApplicationLogic removeService method");
 		ApplicationLogic SUT = new ApplicationLogic() ;
-		
-		// Now let's perform some testing. If we add a customer to the system,
-		// test that this customer should then be really added to the system:
-		int duffyID = SUT.addCustomer("Duffy Duck", "") ;
-		Customer C = SUT.findCustomer(duffyID) ;
-		assertTrue(C.name.equals("Duffy Duck")) ;
-		assertTrue(C.email.equals("")) ;		
+
+		int id = SUT.addCustomer("name", "name@email.com");
+
+		int serviceOne = SUT.addService("service one", 100);
+		int serviceTwo = SUT.addService("service two", 105);
+
+		SUT.addParticipation(id, serviceOne);
+		SUT.addParticipation(id, serviceTwo);
+
+		assertTrue(SUT.serviceExists(id));
+		SUT.removeService(id);
+		assertFalse(SUT.serviceExists(id));
+
+		int c = SUT.addCustomer("n", "n@email.com");
+
+		int o = SUT.addService( "o", 3000);
+		int t = SUT.addService( "t", 3500);
+		int th = SUT.addService( "th", 3000);
+		int f = SUT.addService( "f", 3000);
+		int fv = SUT.addService( "fv", 100000);
+		int s = SUT.addService( "s", 3000);
+
+		SUT.addParticipation(c, o);
+		SUT.addParticipation(c, t);
+		SUT.addParticipation(c, th);
+		SUT.addParticipation(c, f);
+		SUT.addParticipation(c, fv);
+		SUT.addParticipation(c, s);
+
+		SUT.awardDiscount(c, "discount");
+		SUT.awardDiscount(c, "other discount");
+
+		assertTrue(SUT.serviceExists(c));
+		SUT.removeService(c);
+		assertFalse(SUT.serviceExists(c));
+
+
+
 	}
-	
-	// Another example...
+
 	@Test
-	public void test2() {
+	public void resolveTest(){
 		setupDB() ;
+		System.out.println("** Testing ApplicationLogic resolve method");
 		ApplicationLogic SUT = new ApplicationLogic() ;
-		
-		System.out.println("** Testing getCostToPayTest ...") ;
-		
-		int duffyID = SUT.addCustomer("Duffy Duck", "") ;
-		int flowerServiceID = SUT.addService("Flowers online shop", 100) ;
-		// let Duffy but 2x participations on Flower-online:
-		SUT.addParticipation(duffyID, flowerServiceID) ;
-		SUT.addParticipation(duffyID, flowerServiceID) ;
 
-		// Now let's check if the system correctly calculates the participation
-		// cost of Duffy:
-		Customer C = SUT.findCustomer(duffyID) ;
-		assertTrue(C.getCostToPay() == 200) ;
+		int c = SUT.addCustomer("name", "name@email.com");
+		int g = SUT.addCustomer("guest", "guest@email.com");
+
+		int o = SUT.addService( "o", 300000);
+		int t = SUT.addService( "t", 3500);
+		int th = SUT.addService( "th", 3000);
+		int f = SUT.addService( "f", 3000);
+		int fv = SUT.addService( "fv", 100000);
+		int s = SUT.addService( "s", 3000);
+
+		SUT.addParticipation(c, o);
+		SUT.addParticipation(c, t);
+		SUT.addParticipation(c, th);
+		SUT.addParticipation(c, f);
+		SUT.addParticipation(c, fv);
+		SUT.addParticipation(c, s);
+
+		SUT.addParticipation(g, o);
+		SUT.addParticipation(g, t);
+
+		SUT.awardDiscount(g, "D1000eur");
+		SUT.awardDiscount(c, "D5pack");
+
+		Customer C = SUT.findCustomer(c);
+		Customer G = SUT.findCustomer(g);
+
+		Map<Customer,Integer> test = SUT.resolve();
 	}
-
-	@Test
-	public void removeServiceTest(){}
-
-	@Test
-	public void resolveTest(){}
-	
 }

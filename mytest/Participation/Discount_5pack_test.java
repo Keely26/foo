@@ -3,10 +3,22 @@ import org.junit.* ;
 import static org.junit.Assert.* ;
 
 public class Discount_5pack_test extends Discount_5pack{
+    /**
+     * Provide a functionality to reset the database. Here I will just
+     * delete the whole database file.
+     */
+    private void setupDB() {
+        Persistence.wipedb() ;
+    }
 
     @Test
     public void applicableTest(){
-        Customer C = new Customer(0,"name", "name@email.com");
+        setupDB() ;
+        System.out.println("** Testing Discount_5pack applicable method");
+        ApplicationLogic SUT = new ApplicationLogic() ;
+
+        int c = SUT.addCustomer("name", "name@email.com");
+        Customer C = SUT.findCustomer(c);
         Service one = new Service(1, "service one", 300);
         Service two = new Service(2, "service two", 350);
         Service three = new Service(2, "service two", 300);
@@ -25,9 +37,13 @@ public class Discount_5pack_test extends Discount_5pack{
 
     @Test
     public void calcDiscountTest(){
-        Customer C = new Customer(0,"name", "name@email.com");
+        setupDB() ;
+        System.out.println("** Testing Discount_5pack calcDiscount method");
+        ApplicationLogic SUT = new ApplicationLogic() ;
+
+        int c = SUT.addCustomer("name", "name@email.com");
+        Customer C = SUT.findCustomer(c);
         assertEquals(10, calcDiscount(C));
+
     }
-
-
 }
