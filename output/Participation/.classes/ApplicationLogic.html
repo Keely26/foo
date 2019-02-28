@@ -1,0 +1,599 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ApplicationLogic</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">Participation</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ApplicationLogic (Participation)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ApplicationLogic</td>
+<td class="coverageStat">
+  <span class="percent">
+    54.5%
+  </span>
+  <span class="absValue">
+    (12/ 22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    61.5%
+  </span>
+  <span class="absValue">
+    (104/ 169)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ApplicationLogic$Counter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    58.3%
+  </span>
+  <span class="absValue">
+    (14/ 24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    62.4%
+  </span>
+  <span class="absValue">
+    (108/ 173)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package Participation;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.*; 
+<i>4</i>&nbsp;import java.io.* ;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import com.db4o.* ;
+<i>7</i>&nbsp;import com.db4o.query.* ;
+<i>8</i>&nbsp;import com.db4o.config.*;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import static Participation.Persistence.* ;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;/**
+<i>13</i>&nbsp; * This class implements the logic of the &quot;Foo&#39;s Participation System&quot;. 
+<i>14</i>&nbsp; * 
+<i>15</i>&nbsp; * &lt;h4&gt;Background&lt;/h4&gt;
+<i>16</i>&nbsp; *  
+<i>17</i>&nbsp; * This Foo System is not a real business system; it is just a simulation
+<i>18</i>&nbsp; * for your training purpose. It manages a set of &lt;it&gt; customers&lt;/it&gt;, 
+<i>19</i>&nbsp; * &lt;it&gt; services&lt;/it&gt;, and customers&#39; &lt;it&gt;participations&lt;/it&gt; on 
+<i>20</i>&nbsp; * services. It provides basic functionalities, e.g. to add and remove 
+<i>21</i>&nbsp; * customers, services, etc.  A &#39;service&#39; here represents some business, 
+<i>22</i>&nbsp; * e.g. an online shop, or a pizza restaurant. The application provides 
+<i>23</i>&nbsp; * a functionality to let a customer add/buy a participation to a service. 
+<i>24</i>&nbsp; * In the real life this means that the customer would be charged for 
+<i>25</i>&nbsp; * daily contribution to the services he participates in. In exchange he 
+<i>26</i>&nbsp; * will get a proportional share of the services&#39; profit. He can drop 
+<i>27</i>&nbsp; * participation at any time. 
+<i>28</i>&nbsp; * 
+<i>29</i>&nbsp; * &lt;p&gt;Currently profit calculation is not included in the system, but 
+<i>30</i>&nbsp; * it does calculate the contribution cost for each customer. Furthermore,
+<i>31</i>&nbsp; * there is a functionality to award discount tokens to customers; these
+<i>32</i>&nbsp; * give them reduction on the contribution cost they have to pay. The
+<i>33</i>&nbsp; * application provides a functionality to &#39;resolve&#39;, intended to be
+<i>34</i>&nbsp; * invoked by the application owner at the end of every day. It will
+<i>35</i>&nbsp; * calculate the contribution cost of each customer, taking the discount
+<i>36</i>&nbsp; * tokens into account.
+<i>37</i>&nbsp; * 
+<i>38</i>&nbsp; * The user interface to this Foo System is implemented by the class
+<i>39</i>&nbsp; * {@link ParticipationSystem}. As said, this class implements the logic
+<i>40</i>&nbsp; * part of the system.
+<i>41</i>&nbsp; * 
+<i>42</i>&nbsp; * &lt;h4&gt;About this class&lt;/h4&gt;
+<i>43</i>&nbsp; * 
+<i>44</i>&nbsp; * The business data is stored in a database, using db4o OO-database. Access 
+<i>45</i>&nbsp; * to this database goes by the way through the {@link Participation.Persistence} 
+<i>46</i>&nbsp; * class. 
+<i>47</i>&nbsp; * 
+<i>48</i>&nbsp; * &lt;p&gt;This ApplicationLogic class offer functionalities such as to pull 
+<i>49</i>&nbsp; * a customer from the database, to add a new one, or to remove an existing one. 
+<i>50</i>&nbsp; * There are similar functionalities for services. We can also
+<i>51</i>&nbsp; * add a participation to a customer, or delete it, and we can award a bonus token
+<i>52</i>&nbsp; * to a customer, or remove it.
+<i>53</i>&nbsp; * 
+<i>54</i>&nbsp; * &lt;p&gt;Finally there is a method {@link #resolve()} that will apply all applicable 
+<i>55</i>&nbsp; * bonus tokens, and calculate the contribution cost per customer. Those tokens 
+<i>56</i>&nbsp; * are then consumed. 
+<i>57</i>&nbsp; * 
+<i>58</i>&nbsp; *
+<i>59</i>&nbsp; */
+<i>60</i>&nbsp;
+<b class="fc"><i>61</i>&nbsp;public class ApplicationLogic implements Serializable {</b>
+<i>62</i>&nbsp;	
+<i>63</i>&nbsp;	/**
+<i>64</i>&nbsp;	 * An inner class to keep track of fresh IDs for customer, service, 
+<i>65</i>&nbsp;	 * and participation. A fresh ID is needed when we add e.g. a new
+<i>66</i>&nbsp;	 * customer. He will need an ID.
+<i>67</i>&nbsp;	 * 
+<i>68</i>&nbsp;	 * &lt;p&gt;There will be 1x current Counter. Whenever we create 
+<i>69</i>&nbsp;	 * a customer, or a service, etc, this Counter will be consulted,
+<i>70</i>&nbsp;	 * and updated accordingly. We will also keep it persisted in the
+<i>71</i>&nbsp;	 * database.
+<i>72</i>&nbsp;	 */
+<i>73</i>&nbsp;	static class Counter {		
+<i>74</i>&nbsp;		
+<i>75</i>&nbsp;		/**
+<i>76</i>&nbsp;		 * Next fresh ID for customer.
+<i>77</i>&nbsp;		 */
+<b class="fc"><i>78</i>&nbsp;		int nextFreeCustId = 1 ;</b>
+<i>79</i>&nbsp;		
+<i>80</i>&nbsp;		/**
+<i>81</i>&nbsp;		 * Next fresh ID for service.
+<i>82</i>&nbsp;		 */
+<b class="fc"><i>83</i>&nbsp;		int nextFreeServId = 1 ;</b>
+<i>84</i>&nbsp;		
+<i>85</i>&nbsp;		/**
+<i>86</i>&nbsp;		 * Next fresh ID for participation.
+<i>87</i>&nbsp;		 */
+<b class="fc"><i>88</i>&nbsp;		int nextFreePartId = 1 ;	</b>
+<i>89</i>&nbsp;		
+<i>90</i>&nbsp;		/**
+<i>91</i>&nbsp;		 * Just a constructor; the internal counters will be initialized to
+<i>92</i>&nbsp;		 * 1.
+<i>93</i>&nbsp;		 */
+<i>94</i>&nbsp;		public Counter() { }
+<i>95</i>&nbsp;		
+<i>96</i>&nbsp;		/**
+<i>97</i>&nbsp;		 * Pull the current Counter from the database.
+<i>98</i>&nbsp;		 */
+<i>99</i>&nbsp;		static Counter getCounter() {
+<b class="fc"><i>100</i>&nbsp;			return db.query(Counter.class).get(0) ;</b>
+<i>101</i>&nbsp;		}
+<i>102</i>&nbsp;		
+<i>103</i>&nbsp;	}
+<i>104</i>&nbsp;		
+<i>105</i>&nbsp;	/**
+<i>106</i>&nbsp;	 * A constructor to create an instance of this class. It will also configure the 
+<i>107</i>&nbsp;	 * database. 
+<i>108</i>&nbsp;	 */
+<b class="fc"><i>109</i>&nbsp;	public ApplicationLogic() {		</b>
+<b class="fc"><i>110</i>&nbsp;		configure() ;</b>
+<b class="fc"><i>111</i>&nbsp;		open() ;</b>
+<b class="fc"><i>112</i>&nbsp;		List&lt;Counter&gt; r = db.query(Counter.class) ;</b>
+<b class="pc"><i>113</i>&nbsp;		if (r.isEmpty()) db.store(new Counter()) ;</b>
+<b class="fc"><i>114</i>&nbsp;		close() ;</b>
+<i>115</i>&nbsp;	}
+<i>116</i>&nbsp;	
+<i>117</i>&nbsp;	/**
+<i>118</i>&nbsp;	 * Return the list of all customers stored in the database. 
+<i>119</i>&nbsp;	 */
+<i>120</i>&nbsp;	public List&lt;Customer&gt; getCustomers() { 
+<b class="nc"><i>121</i>&nbsp;		open() ;</b>
+<b class="nc"><i>122</i>&nbsp;		List&lt;Customer&gt; r = new LinkedList(db.query(Customer.class)) ;</b>
+<b class="nc"><i>123</i>&nbsp;		close() ;</b>
+<b class="nc"><i>124</i>&nbsp;		return r ;</b>
+<i>125</i>&nbsp;	}
+<i>126</i>&nbsp;
+<i>127</i>&nbsp;	/**
+<i>128</i>&nbsp;	 * Return the list of all services stored in the database.
+<i>129</i>&nbsp;	 */
+<i>130</i>&nbsp;	public List&lt;Service&gt; getServices() { 
+<b class="nc"><i>131</i>&nbsp;		open() ;</b>
+<b class="nc"><i>132</i>&nbsp;		List&lt;Service&gt; r = new LinkedList(db.query(Service.class)) ;</b>
+<b class="nc"><i>133</i>&nbsp;		close() ;</b>
+<b class="nc"><i>134</i>&nbsp;		return r ;</b>
+<i>135</i>&nbsp;	}
+<i>136</i>&nbsp;
+<i>137</i>&nbsp;	/**
+<i>138</i>&nbsp;	 * Find a customer with the given ID in the database. It 
+<i>139</i>&nbsp;	 * returns the customer, or null if it can&#39;t be found.
+<i>140</i>&nbsp;	 */
+<i>141</i>&nbsp;	public Customer findCustomer(int custID) {	
+<b class="fc"><i>142</i>&nbsp;		open() ;</b>
+<b class="fc"><i>143</i>&nbsp;		List&lt;Customer&gt; r = db.queryByExample(new Customer(custID,null,null)) ;</b>
+<b class="pc"><i>144</i>&nbsp;		if (r==null || r.isEmpty()) { close() ; return null ; }</b>
+<b class="fc"><i>145</i>&nbsp;		Customer c = r.get(0) ;</b>
+<b class="fc"><i>146</i>&nbsp; 		close() ;</b>
+<b class="fc"><i>147</i>&nbsp;		return c ;</b>
+<i>148</i>&nbsp;	}
+<i>149</i>&nbsp;	
+<i>150</i>&nbsp;	/**
+<i>151</i>&nbsp;	 * Check if a customer with the given id exists in the database.
+<i>152</i>&nbsp;	 */
+<i>153</i>&nbsp;	public boolean custExists(int id) {
+<b class="nc"><i>154</i>&nbsp;		return (findCustomer(id) != null) ;</b>
+<i>155</i>&nbsp;	}
+<i>156</i>&nbsp;	
+<i>157</i>&nbsp;	/**
+<i>158</i>&nbsp;	 * Find a customer with the given name and email in the database.
+<i>159</i>&nbsp;	 * It returns the customer, or null if he cannot be found.
+<i>160</i>&nbsp;	 */
+<i>161</i>&nbsp;	public Customer findCustomer(String name, String email) {
+<b class="nc"><i>162</i>&nbsp;		List&lt;Customer&gt; cs = getCustomers() ;</b>
+<b class="nc"><i>163</i>&nbsp;		for (Customer C : cs) {</b>
+<b class="nc"><i>164</i>&nbsp;			if (C.name.equals(name) &amp;&amp; C.email.equals(email)) return C ;</b>
+<b class="nc"><i>165</i>&nbsp;		}</b>
+<b class="nc"><i>166</i>&nbsp;		return null ;</b>
+<i>167</i>&nbsp;	}
+<i>168</i>&nbsp;
+<i>169</i>&nbsp;	/**
+<i>170</i>&nbsp;	 * Find a service with the given ID in the database. It 
+<i>171</i>&nbsp;	 * returns the service, or null if it can&#39;t be found.
+<i>172</i>&nbsp;	 */
+<i>173</i>&nbsp;	public Service findService(int servID) {
+<b class="fc"><i>174</i>&nbsp;		open() ;</b>
+<b class="fc"><i>175</i>&nbsp;		List&lt;Service&gt; r = db.queryByExample(new Service(servID,null,0)) ;</b>
+<b class="pc"><i>176</i>&nbsp;		if (r == null || r.isEmpty()) { close() ; return null ; }</b>
+<b class="fc"><i>177</i>&nbsp;		Service s = r.get(0) ;</b>
+<b class="fc"><i>178</i>&nbsp;		close() ;</b>
+<b class="fc"><i>179</i>&nbsp;		return s ;</b>
+<i>180</i>&nbsp;	}
+<i>181</i>&nbsp;	
+<i>182</i>&nbsp;	/**
+<i>183</i>&nbsp;	 * Check if a service with the given id exists.
+<i>184</i>&nbsp;	 */
+<i>185</i>&nbsp;	public boolean serviceExists(int id){
+<b class="fc"><i>186</i>&nbsp;		return (findService(id) != null) ;</b>
+<i>187</i>&nbsp;	}
+<i>188</i>&nbsp;
+<i>189</i>&nbsp;	
+<i>190</i>&nbsp;	/**
+<i>191</i>&nbsp;	 * Add a new customer with the given name and email. This succeeds if 
+<i>192</i>&nbsp;	 * no customer with the same combination of name and email already
+<i>193</i>&nbsp;	 * exists in the database. The new customer will get his ID, and this
+<i>194</i>&nbsp;	 * method will return this ID.
+<i>195</i>&nbsp;	 * 
+<i>196</i>&nbsp;	 * &lt;p&gt;If however there is already a customer in the database with the
+<i>197</i>&nbsp;	 * same combination of name and email, no new customer will be added,
+<i>198</i>&nbsp;	 * and this method will return -1.
+<i>199</i>&nbsp;	 */
+<i>200</i>&nbsp;	public int addCustomer(String name, String email) {
+<i>201</i>&nbsp;
+<b class="fc"><i>202</i>&nbsp;		open() ;</b>
+<b class="fc"><i>203</i>&nbsp;		Counter freshIds = Counter.getCounter() ;</b>
+<b class="fc"><i>204</i>&nbsp;		int id = freshIds.nextFreeCustId ;</b>
+<i>205</i>&nbsp;		
+<b class="fc"><i>206</i>&nbsp;		Customer c = new Customer(id,name,email) ;</b>
+<i>207</i>&nbsp;		
+<b class="fc"><i>208</i>&nbsp;		List&lt;Customer&gt; r = db.queryByExample(new Customer(0,name,email)) ;</b>
+<b class="pc"><i>209</i>&nbsp;		if (! r.isEmpty()) { close() ; return -1 ; }</b>
+<i>210</i>&nbsp;		
+<b class="fc"><i>211</i>&nbsp;		db.store(c) ;</b>
+<b class="fc"><i>212</i>&nbsp;		freshIds.nextFreeCustId++ ;</b>
+<b class="fc"><i>213</i>&nbsp;		db.store(freshIds) ;</b>
+<b class="fc"><i>214</i>&nbsp;		close() ;</b>
+<b class="fc"><i>215</i>&nbsp;		return id ;</b>
+<i>216</i>&nbsp;	}
+<i>217</i>&nbsp;
+<i>218</i>&nbsp;	
+<i>219</i>&nbsp;	/**
+<i>220</i>&nbsp;	 * Remove the customer of the given ID from the database. All his 
+<i>221</i>&nbsp;	 * participations will also be removed (cascade removal).
+<i>222</i>&nbsp;	 */
+<i>223</i>&nbsp;	public void removeCustomer(int custID) {
+<b class="nc"><i>224</i>&nbsp;		open() ;</b>
+<b class="nc"><i>225</i>&nbsp;		List&lt;Customer&gt; cs= db.queryByExample(new Customer(custID,null,null)) ;		</b>
+<b class="nc"><i>226</i>&nbsp;		if (cs.isEmpty()) { close() ; return ; }	</b>
+<b class="nc"><i>227</i>&nbsp;		Customer c = cs.get(0) ;</b>
+<b class="nc"><i>228</i>&nbsp;		db.delete(c) ;</b>
+<b class="nc"><i>229</i>&nbsp;		for (Participation P : c.participations) db.delete(P) ;</b>
+<b class="nc"><i>230</i>&nbsp;		for (Discount D : c.discounts) db.delete(D) ;</b>
+<b class="nc"><i>231</i>&nbsp;		close() ;</b>
+<i>232</i>&nbsp;	}
+<i>233</i>&nbsp;	
+<i>234</i>&nbsp;	/**
+<i>235</i>&nbsp;	 * Add a new service with the given name and price (in Euro-cent).
+<i>236</i>&nbsp;	 * It succeeds if no service with the same name already exists in
+<i>237</i>&nbsp;	 * the database. The new service is the added. It gets an ID, and
+<i>238</i>&nbsp;	 * this ID will be returned.
+<i>239</i>&nbsp;	 * 
+<i>240</i>&nbsp;	 * &lt;p&gt;If a service with the same name already exists, no new service
+<i>241</i>&nbsp;	 * will be added. This method then returns -1.
+<i>242</i>&nbsp;	 * 
+<i>243</i>&nbsp;	 * @param price Should be non-negative.
+<i>244</i>&nbsp;	 */
+<i>245</i>&nbsp;	public int addService(String name, int price) {
+<i>246</i>&nbsp;		
+<b class="pc"><i>247</i>&nbsp;		assert price &gt;= 0 : &quot;PRE&quot; ;</b>
+<i>248</i>&nbsp;		
+<b class="fc"><i>249</i>&nbsp;		open();</b>
+<b class="fc"><i>250</i>&nbsp;		Counter nextID = Counter.getCounter() ;</b>
+<b class="fc"><i>251</i>&nbsp;		int id = nextID.nextFreeServId ;</b>
+<b class="fc"><i>252</i>&nbsp;		Service s = new Service(id,name,price) ;</b>
+<b class="fc"><i>253</i>&nbsp;		List&lt;Service&gt; r = db.queryByExample(new Service(0,name,0)) ;</b>
+<i>254</i>&nbsp;		
+<b class="pc"><i>255</i>&nbsp;		if (! r.isEmpty()) { close() ; return -1 ; }</b>
+<i>256</i>&nbsp;		
+<b class="fc"><i>257</i>&nbsp;		db.store(s) ;</b>
+<b class="fc"><i>258</i>&nbsp;		nextID.nextFreeServId++ ;</b>
+<b class="fc"><i>259</i>&nbsp;		db.store(nextID) ;</b>
+<b class="fc"><i>260</i>&nbsp;		close() ;</b>
+<i>261</i>&nbsp;
+<b class="fc"><i>262</i>&nbsp;		return id ;</b>
+<i>263</i>&nbsp;	}
+<i>264</i>&nbsp;	
+<i>265</i>&nbsp;	
+<i>266</i>&nbsp;	/**
+<i>267</i>&nbsp;	 * Remove the service with the given ID. It should remove all participations
+<i>268</i>&nbsp;	 * to that service as well.
+<i>269</i>&nbsp;	 */
+<i>270</i>&nbsp;	public void removeService(int servID) {
+<i>271</i>&nbsp;				
+<b class="fc"><i>272</i>&nbsp;		open() ;</b>
+<b class="fc"><i>273</i>&nbsp;		List&lt;Service&gt; ss= db.queryByExample(new Service(servID,null,0) ) ;</b>
+<i>274</i>&nbsp;		
+<b class="pc"><i>275</i>&nbsp;		if (ss.isEmpty()) { close() ; return ; }</b>
+<i>276</i>&nbsp;		
+<b class="fc"><i>277</i>&nbsp;		Service s = ss.get(0) ;</b>
+<b class="fc"><i>278</i>&nbsp;		db.delete(s) ;</b>
+<i>279</i>&nbsp;		
+<b class="fc"><i>280</i>&nbsp;		List&lt;Customer&gt; customers = db.query(Customer.class) ;</b>
+<i>281</i>&nbsp;	
+<b class="fc"><i>282</i>&nbsp;		for (Customer c : customers) {</b>
+<b class="fc"><i>283</i>&nbsp;			boolean changed = false ;</b>
+<b class="fc"><i>284</i>&nbsp;			List&lt;Participation&gt; tobeRemoved = new LinkedList&lt;Participation&gt;() ;</b>
+<b class="fc"><i>285</i>&nbsp;			for (Participation P : c.participations)</b>
+<b class="fc"><i>286</i>&nbsp;				if (P.service.ID == servID) {</b>
+<b class="fc"><i>287</i>&nbsp;					changed = true ;</b>
+<b class="fc"><i>288</i>&nbsp;					tobeRemoved.add(P) ;</b>
+<b class="fc"><i>289</i>&nbsp;					db.delete(P) ;</b>
+<i>290</i>&nbsp;				} ;
+<b class="fc"><i>291</i>&nbsp;			if (changed) {</b>
+<b class="fc"><i>292</i>&nbsp;				c.participations.removeAll(tobeRemoved) ;</b>
+<b class="fc"><i>293</i>&nbsp;				db.store(c) ;</b>
+<i>294</i>&nbsp;			}
+<b class="fc"><i>295</i>&nbsp;		}	</b>
+<i>296</i>&nbsp;		
+<b class="fc"><i>297</i>&nbsp;		close() ;</b>
+<i>298</i>&nbsp;	}
+<i>299</i>&nbsp;	
+<i>300</i>&nbsp;	/**
+<i>301</i>&nbsp;	 * Add a new participation by the given customer for the given
+<i>302</i>&nbsp;	 * service. This is only possible if the IDs passed are valid
+<i>303</i>&nbsp;	 * IDs. The method then return true, else it returns false.
+<i>304</i>&nbsp;	 * 
+<i>305</i>&nbsp;	 */
+<i>306</i>&nbsp;	public boolean addParticipation(int custID, int servID) {	
+<i>307</i>&nbsp;
+<b class="fc"><i>308</i>&nbsp;		open();</b>
+<i>309</i>&nbsp;
+<b class="fc"><i>310</i>&nbsp;		List&lt;Customer&gt; cs = db.queryByExample(new Customer(custID,null,null)) ;</b>
+<b class="fc"><i>311</i>&nbsp;		List&lt;Service&gt;  ss = db.queryByExample(new Service(servID,null,0)) ;</b>
+<i>312</i>&nbsp;		
+<b class="pc"><i>313</i>&nbsp;		if (cs.isEmpty() || ss.isEmpty()) {</b>
+<b class="nc"><i>314</i>&nbsp;			close(); </b>
+<b class="nc"><i>315</i>&nbsp;			return false ;</b>
+<i>316</i>&nbsp;		}
+<i>317</i>&nbsp;		
+<b class="fc"><i>318</i>&nbsp;		Customer c = cs.get(0) ;</b>
+<b class="fc"><i>319</i>&nbsp;		Service s = ss.get(0) ;		</b>
+<b class="fc"><i>320</i>&nbsp;		Participation p   = new Participation(c,s) ;</b>
+<b class="fc"><i>321</i>&nbsp;		c.participations.add(p) ;</b>
+<b class="fc"><i>322</i>&nbsp;		db.store(c) ;</b>
+<b class="fc"><i>323</i>&nbsp;		close() ;</b>
+<b class="fc"><i>324</i>&nbsp;		return true ;</b>
+<i>325</i>&nbsp;	}
+<i>326</i>&nbsp;	
+<i>327</i>&nbsp;	/**
+<i>328</i>&nbsp;	 * Just a string-code for {@link Participation.Discount_1000}.
+<i>329</i>&nbsp;	 */
+<i>330</i>&nbsp;	static public final String  D1000 = &quot;D1000eur&quot; ;
+<i>331</i>&nbsp;	
+<i>332</i>&nbsp;	/**
+<i>333</i>&nbsp;	 * A string-code for {@link Participation.Discount_5pack}.
+<i>334</i>&nbsp;	 */
+<i>335</i>&nbsp;	static public final String  D5p = &quot;D5pack&quot; ;
+<i>336</i>&nbsp;	
+<i>337</i>&nbsp;	
+<i>338</i>&nbsp;	private Discount mk_discount_token(String code) {
+<b class="fc"><i>339</i>&nbsp;		if (code.equals(D1000)) return new Discount_1000() ;</b>
+<b class="fc"><i>340</i>&nbsp;		if (code.equals(D5p)) return new Discount_5pack() ;</b>
+<b class="fc"><i>341</i>&nbsp;		return null ;</b>
+<i>342</i>&nbsp;	}
+<i>343</i>&nbsp;	
+<i>344</i>&nbsp;	/**
+<i>345</i>&nbsp;	 * Award a discount token to the given customer. It succeeds if the ID
+<i>346</i>&nbsp;	 * and the discount-code passed are valid ID/code. In that case it will
+<i>347</i>&nbsp;	 * return true, and else false.
+<i>348</i>&nbsp;	 */
+<i>349</i>&nbsp;	public boolean awardDiscount(int custID, String discountCode) {	
+<b class="fc"><i>350</i>&nbsp;		Discount D = mk_discount_token(discountCode) ;</b>
+<b class="fc"><i>351</i>&nbsp;		if (D==null) return false ;</b>
+<b class="fc"><i>352</i>&nbsp;		open();</b>
+<b class="fc"><i>353</i>&nbsp;		List&lt;Customer&gt; cs = db.queryByExample(new Customer(custID,null,null)) ;</b>
+<b class="pc"><i>354</i>&nbsp;		if (cs.isEmpty()) { close(); return false ; }		</b>
+<b class="fc"><i>355</i>&nbsp;		Customer c = cs.get(0) ;</b>
+<b class="fc"><i>356</i>&nbsp;		c.discounts.add(D) ;</b>
+<b class="fc"><i>357</i>&nbsp;		db.store(D) ;</b>
+<b class="fc"><i>358</i>&nbsp;		db.store(c) ;</b>
+<b class="fc"><i>359</i>&nbsp;		close() ;</b>
+<b class="fc"><i>360</i>&nbsp;		return true ;</b>
+<i>361</i>&nbsp;	}
+<i>362</i>&nbsp;	
+<i>363</i>&nbsp;	/**
+<i>364</i>&nbsp;	 * Remove a discount token to the given customer. It succeeds if the ID
+<i>365</i>&nbsp;	 * and the discount-code passed are valid ID/code. In that case it will
+<i>366</i>&nbsp;	 * return true, and else false.
+<i>367</i>&nbsp;	 */
+<i>368</i>&nbsp;	public boolean remDiscount(int custID, String discountCode) {	
+<b class="nc"><i>369</i>&nbsp;		Discount D = mk_discount_token(discountCode) ;</b>
+<b class="nc"><i>370</i>&nbsp;		if (D==null) return false ;</b>
+<b class="nc"><i>371</i>&nbsp;		open();</b>
+<b class="nc"><i>372</i>&nbsp;		List&lt;Customer&gt; cs = db.queryByExample(new Customer(custID,null,null)) ;</b>
+<b class="nc"><i>373</i>&nbsp;		if (cs.isEmpty()) { close(); return false ; }		</b>
+<b class="nc"><i>374</i>&nbsp;		Customer c = cs.get(0) ;</b>
+<b class="nc"><i>375</i>&nbsp;		Discount found = null ;</b>
+<b class="nc"><i>376</i>&nbsp;		for (Discount E : c.discounts) {</b>
+<b class="nc"><i>377</i>&nbsp;			if (E.getClass().equals(D.getClass())) {</b>
+<b class="nc"><i>378</i>&nbsp;				found = E ;</b>
+<b class="nc"><i>379</i>&nbsp;				break ;</b>
+<i>380</i>&nbsp;			}
+<b class="nc"><i>381</i>&nbsp;		}</b>
+<b class="nc"><i>382</i>&nbsp;		if (found != null) c.discounts.remove(found) ;</b>
+<b class="nc"><i>383</i>&nbsp;		db.delete(found) ;</b>
+<b class="nc"><i>384</i>&nbsp;		db.store(c) ;</b>
+<b class="nc"><i>385</i>&nbsp;		close() ;</b>
+<b class="nc"><i>386</i>&nbsp;		return true ;</b>
+<i>387</i>&nbsp;	}
+<i>388</i>&nbsp;	
+<i>389</i>&nbsp;	/**
+<i>390</i>&nbsp;	 * Will drop one participation of a customer on a service.
+<i>391</i>&nbsp;	 */
+<i>392</i>&nbsp;	public void dropParticipation(int custID, int servID) {		
+<b class="nc"><i>393</i>&nbsp;		open() ;</b>
+<b class="nc"><i>394</i>&nbsp;		List&lt;Customer&gt; cs = db.queryByExample(new Customer(custID,null,null)) ;</b>
+<b class="nc"><i>395</i>&nbsp;		if (cs.isEmpty()) { close() ; return ; }</b>
+<i>396</i>&nbsp;		
+<b class="nc"><i>397</i>&nbsp;		Customer C = cs.get(0) ;</b>
+<i>398</i>&nbsp;		
+<b class="nc"><i>399</i>&nbsp;		Participation tobeDeleted = null ;</b>
+<b class="nc"><i>400</i>&nbsp;		for (Participation P : C.participations) {</b>
+<b class="nc"><i>401</i>&nbsp;			if (P.service.ID == servID) {</b>
+<b class="nc"><i>402</i>&nbsp;				tobeDeleted = P ;</b>
+<b class="nc"><i>403</i>&nbsp;				break ;</b>
+<i>404</i>&nbsp;			}
+<b class="nc"><i>405</i>&nbsp;		}</b>
+<b class="nc"><i>406</i>&nbsp;		if (tobeDeleted != null) {</b>
+<b class="nc"><i>407</i>&nbsp;			C.participations.remove(tobeDeleted) ;</b>
+<b class="nc"><i>408</i>&nbsp;			db.delete(tobeDeleted) ;</b>
+<b class="nc"><i>409</i>&nbsp;			db.store(C) ;</b>
+<i>410</i>&nbsp;		}		
+<b class="nc"><i>411</i>&nbsp;		close() ;		</b>
+<i>412</i>&nbsp;	}
+<i>413</i>&nbsp;	
+<i>414</i>&nbsp;	/**
+<i>415</i>&nbsp;	 * Return the total paticipation&#39;s value (his total contribution cost 
+<i>416</i>&nbsp;	 * before discount) of the given customer. 
+<i>417</i>&nbsp;	 * Return -1 if the passed customer ID is not valid.
+<i>418</i>&nbsp;	 */
+<i>419</i>&nbsp;	public int participationValue(int custID) {
+<b class="nc"><i>420</i>&nbsp;		Customer c = findCustomer(custID) ;</b>
+<b class="nc"><i>421</i>&nbsp;		if (c==null) return -1 ; </b>
+<b class="nc"><i>422</i>&nbsp;		return c.participationValue() ;</b>
+<i>423</i>&nbsp;	}
+<i>424</i>&nbsp;	
+<i>425</i>&nbsp;	/**
+<i>426</i>&nbsp;	 * Return the customer&#39;s total discount value. Return -1 if the customer ID
+<i>427</i>&nbsp;	 * is not valid.
+<i>428</i>&nbsp;	 */
+<i>429</i>&nbsp;	public int discount(int custID)  {
+<b class="nc"><i>430</i>&nbsp;		Customer c = findCustomer(custID) ;</b>
+<b class="nc"><i>431</i>&nbsp;		if (c==null) return -1 ; </b>
+<b class="nc"><i>432</i>&nbsp;		return c.getDiscountValue() ;</b>
+<i>433</i>&nbsp;	}
+<i>434</i>&nbsp;
+<i>435</i>&nbsp;	/**
+<i>436</i>&nbsp;	 * Return the customer&#39;s total contribution cost, after discount. Return -1 if the customer ID
+<i>437</i>&nbsp;	 * is not valid.
+<i>438</i>&nbsp;	 */
+<i>439</i>&nbsp;	public int costToPay(int custID)  {
+<b class="nc"><i>440</i>&nbsp;		Customer c = findCustomer(custID) ;</b>
+<b class="nc"><i>441</i>&nbsp;		if (c==null) return -1 ; </b>
+<b class="nc"><i>442</i>&nbsp;		return c.getCostToPay() ;</b>
+<i>443</i>&nbsp;	}
+<i>444</i>&nbsp;	
+<i>445</i>&nbsp;	
+<i>446</i>&nbsp;	/**
+<i>447</i>&nbsp;	 * This is used to conclude a day trading. This calculates for each customer
+<i>448</i>&nbsp;	 * in the database, the contribution cost he has to pay, then consumes 
+<i>449</i>&nbsp;	 * all applicable discount tokens.
+<i>450</i>&nbsp;	 */
+<i>451</i>&nbsp;	public Map&lt;Customer,Integer&gt; resolve()  {
+<b class="fc"><i>452</i>&nbsp;		open() ;</b>
+<b class="fc"><i>453</i>&nbsp;		Map&lt;Customer,Integer&gt; payment = new HashMap&lt;Customer,Integer&gt;() ;</b>
+<b class="fc"><i>454</i>&nbsp;		List&lt;Customer&gt; customers = db.query(Customer.class) ;</b>
+<b class="fc"><i>455</i>&nbsp;		for (Customer C: customers) {</b>
+<b class="fc"><i>456</i>&nbsp;			int topay = C.getCostToPay() ;</b>
+<b class="fc"><i>457</i>&nbsp;			List&lt;Discount&gt; applicable = new LinkedList&lt;Discount&gt;() ;</b>
+<b class="fc"><i>458</i>&nbsp;			for (Discount D : C.discounts) {</b>
+<b class="pc"><i>459</i>&nbsp;				if (D.applicable(C)) {</b>
+<b class="fc"><i>460</i>&nbsp;					db.delete(D) ;</b>
+<b class="fc"><i>461</i>&nbsp;					applicable.add(D) ;</b>
+<i>462</i>&nbsp;				}
+<b class="fc"><i>463</i>&nbsp;			}</b>
+<b class="fc"><i>464</i>&nbsp;			for (Discount D : applicable) C.discounts.remove(D) ;</b>
+<b class="fc"><i>465</i>&nbsp;			db.store(C) ;</b>
+<b class="fc"><i>466</i>&nbsp;			payment.put(C,topay) ;</b>
+<b class="fc"><i>467</i>&nbsp; 		}</b>
+<b class="fc"><i>468</i>&nbsp;		close() ;</b>
+<b class="fc"><i>469</i>&nbsp;		return payment ;</b>
+<i>470</i>&nbsp;	}
+<i>471</i>&nbsp;	
+<i>472</i>&nbsp;	/*  Ignore this; for dev test only.
+<i>473</i>&nbsp;	static public void main(String[] args) {
+<i>474</i>&nbsp;		Persistence.DEBUG = true ;
+<i>475</i>&nbsp;		ApplicationLogic app = new ApplicationLogic() ;
+<i>476</i>&nbsp;		System.out.println(&quot;## &quot; + app.getCustomers().size() + &quot; customers.&quot;) ;
+<i>477</i>&nbsp;		app.addCustomer(&quot;Woosh&quot;,&quot;woosh@google&quot;) ;
+<i>478</i>&nbsp;		app.addCustomer(&quot;Otje&quot;,&quot;otje@google&quot;) ;
+<i>479</i>&nbsp;		List&lt;Customer&gt; cs = app.getCustomers() ;
+<i>480</i>&nbsp;		System.out.println(&quot;## &quot; + cs.size() + &quot; customers.&quot;) ;
+<i>481</i>&nbsp;		for (Customer c : cs) {
+<i>482</i>&nbsp;			System.out.println(&quot;CUST &quot; + c.name + &quot; subscribes &quot; + c.participations.size()) ;
+<i>483</i>&nbsp;		}
+<i>484</i>&nbsp;		System.out.println(&quot;## rolling back...&quot;) ;
+<i>485</i>&nbsp;		resetdb() ;
+<i>486</i>&nbsp;		System.out.println(&quot;## &quot; + app.getCustomers().size() + &quot; customers.&quot;) ;
+<i>487</i>&nbsp;	}
+<i>488</i>&nbsp;	*/
+<i>489</i>&nbsp;	
+<i>490</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-02-28 10:53</div>
+</div>
+</body>
+</html>

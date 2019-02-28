@@ -8,7 +8,7 @@ public class Testing_Discount extends Discount {
 
     @Override
     public int calcDiscount(Customer c) {
-        return 100;
+        return 200;
     }
 
     @Override

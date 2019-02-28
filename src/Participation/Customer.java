@@ -94,7 +94,6 @@ public class Customer implements Serializable {
 	public Map<Service,ServiceInfo> getParticipationGroups() { 
 		
 		Map<Service,ServiceInfo> result = new HashMap<Service,ServiceInfo>() ;
-		
 		for (Participation P : participations) {
 			ServiceInfo info = result.get(P.service) ;
 			if (info==null) {

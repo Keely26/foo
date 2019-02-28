@@ -44,6 +44,7 @@ public class ApplicationLogic_test {
 		assertFalse(SUT.serviceExists(id));
 
 		int c = SUT.addCustomer("n", "n@email.com");
+		int g = SUT.addCustomer("n", "n@email.com");
 
 		int o = SUT.addService( "o", 3000);
 		int t = SUT.addService( "t", 3500);
@@ -59,12 +60,13 @@ public class ApplicationLogic_test {
 		SUT.addParticipation(c, fv);
 		SUT.addParticipation(c, s);
 
-		SUT.awardDiscount(c, "discount");
-		SUT.awardDiscount(c, "other discount");
+		SUT.awardDiscount(c, "D1000eur");
+		SUT.awardDiscount(c, "D5pack");
 
 		assertTrue(SUT.serviceExists(c));
 		SUT.removeService(c);
 		assertFalse(SUT.serviceExists(c));
+		SUT.removeService(g);
 
 
 
@@ -79,7 +81,7 @@ public class ApplicationLogic_test {
 		int c = SUT.addCustomer("name", "name@email.com");
 		int g = SUT.addCustomer("guest", "guest@email.com");
 
-		int o = SUT.addService( "o", 300000);
+		int o = SUT.addService( "o", 300);
 		int t = SUT.addService( "t", 3500);
 		int th = SUT.addService( "th", 3000);
 		int f = SUT.addService( "f", 3000);
@@ -97,7 +99,9 @@ public class ApplicationLogic_test {
 		SUT.addParticipation(g, t);
 
 		SUT.awardDiscount(g, "D1000eur");
+		SUT.awardDiscount(g, "D5pack");
 		SUT.awardDiscount(c, "D5pack");
+		SUT.awardDiscount(c, "D1000eur");
 
 		Customer C = SUT.findCustomer(c);
 		Customer G = SUT.findCustomer(g);

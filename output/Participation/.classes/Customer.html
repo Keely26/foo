@@ -1,0 +1,250 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Customer</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">Participation</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Customer (Participation)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Customer</td>
+<td class="coverageStat">
+  <span class="percent">
+    41.7%
+  </span>
+  <span class="absValue">
+    (5/ 12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    71.4%
+  </span>
+  <span class="absValue">
+    (25/ 35)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Customer$ServiceInfo</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    46.2%
+  </span>
+  <span class="absValue">
+    (6/ 13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    73.7%
+  </span>
+  <span class="absValue">
+    (28/ 38)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package Participation;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.io.Serializable;
+<i>4</i>&nbsp;import java.util.* ;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;/**
+<i>7</i>&nbsp; * An instance of this class represents a customer. 
+<i>8</i>&nbsp; * 
+<i>9</i>&nbsp; * See also the background provided in {@link ApplicationLogic}.
+<i>10</i>&nbsp; */
+<i>11</i>&nbsp;public class Customer implements Serializable {
+<i>12</i>&nbsp;	
+<i>13</i>&nbsp;	int ID ;
+<i>14</i>&nbsp;	String name ;
+<i>15</i>&nbsp;	String email  ;
+<i>16</i>&nbsp;	
+<i>17</i>&nbsp;	/**
+<i>18</i>&nbsp;	 * All participations that this customer owns.
+<i>19</i>&nbsp;	 */
+<b class="fc"><i>20</i>&nbsp;	Set&lt;Participation&gt; participations = new HashSet&lt;Participation&gt;() ;</b>
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;	/**
+<i>23</i>&nbsp;	 * Discount tokens that this customer owns.
+<i>24</i>&nbsp;	 */
+<b class="fc"><i>25</i>&nbsp;	Set&lt;Discount&gt; discounts = new HashSet&lt;Discount&gt;() ;</b>
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;	
+<i>28</i>&nbsp;	/**
+<i>29</i>&nbsp;	 * Create a Customer object with the given ID, name, and email.
+<i>30</i>&nbsp;	 */
+<b class="fc"><i>31</i>&nbsp;	public Customer(int id, String myName, String myEmail) {</b>
+<b class="fc"><i>32</i>&nbsp;		ID = id ;</b>
+<b class="fc"><i>33</i>&nbsp;		name = myName ;</b>
+<b class="fc"><i>34</i>&nbsp;		email = myEmail ;</b>
+<i>35</i>&nbsp;	}
+<i>36</i>&nbsp;	
+<i>37</i>&nbsp;	/**
+<i>38</i>&nbsp;	 * Create a Customer object with the given name, and email.
+<i>39</i>&nbsp;	 * ID is set to a non-valid -1.
+<i>40</i>&nbsp;	 */
+<b class="nc"><i>41</i>&nbsp;	public Customer(String myName, String myEmail) {</b>
+<b class="nc"><i>42</i>&nbsp;		ID = -1 ;</b>
+<b class="nc"><i>43</i>&nbsp;		name = myName ;</b>
+<b class="nc"><i>44</i>&nbsp;		email = myEmail ;</b>
+<i>45</i>&nbsp;	}
+<i>46</i>&nbsp;	
+<i>47</i>&nbsp;	// Bunch of getters.
+<i>48</i>&nbsp;	
+<i>49</i>&nbsp;	/**
+<i>50</i>&nbsp;	 * Returns this customer&#39;s id.
+<i>51</i>&nbsp;	 */
+<b class="nc"><i>52</i>&nbsp;	public int getID() { return ID ; }</b>
+<i>53</i>&nbsp;	
+<i>54</i>&nbsp;	/**
+<i>55</i>&nbsp;	 * Return this customer&#39;s name.
+<i>56</i>&nbsp;	 */
+<b class="nc"><i>57</i>&nbsp;	public String getName() { return name ; }</b>
+<i>58</i>&nbsp;	
+<i>59</i>&nbsp;	/**
+<i>60</i>&nbsp;	 * Return this customer&#39;s email.
+<i>61</i>&nbsp;	 */
+<b class="nc"><i>62</i>&nbsp;	public String getEmail() { return email ; }</b>
+<i>63</i>&nbsp;	
+<i>64</i>&nbsp;	/**
+<i>65</i>&nbsp;	 * Return the set of participations belonging to this customer.
+<i>66</i>&nbsp;	 */
+<b class="nc"><i>67</i>&nbsp;	public Set&lt;Participation&gt; getParticipations() { return participations ; }</b>
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;	/**
+<i>70</i>&nbsp;	 * Return the total participation value of this customer. This is his total contribution 
+<i>71</i>&nbsp;	 * cost before discount.
+<i>72</i>&nbsp;	 */
+<i>73</i>&nbsp;	public int participationValue() {
+<b class="fc"><i>74</i>&nbsp;		int val = 0 ;</b>
+<b class="fc"><i>75</i>&nbsp;		for (Participation P : participations) val += P.service.price ;</b>
+<b class="fc"><i>76</i>&nbsp;		return val ;</b>
+<i>77</i>&nbsp;	}
+<i>78</i>&nbsp;	
+<i>79</i>&nbsp;	/**
+<i>80</i>&nbsp;	 * This inner class is just a helper. Objects of this class are 
+<i>81</i>&nbsp;	 * used to bundle service-related information together for the 
+<i>82</i>&nbsp;	 * purpose of passing the information from some methods to another
+<i>83</i>&nbsp;	 * in a single bundle.
+<i>84</i>&nbsp;	 */
+<b class="fc"><i>85</i>&nbsp;	static public class ServiceInfo {</b>
+<b class="fc"><i>86</i>&nbsp;		public int totalParticipationValue = 0 ;</b>
+<b class="fc"><i>87</i>&nbsp;		public Set&lt;Participation&gt; participations = new HashSet&lt;Participation&gt;() ;</b>
+<i>88</i>&nbsp;	}
+<i>89</i>&nbsp;	
+<i>90</i>&nbsp;	/**
+<i>91</i>&nbsp;	 * Return the participations, but grouped by the services participated to.
+<i>92</i>&nbsp;	 * Each group will be wrapped in an a ServiceInfo object.
+<i>93</i>&nbsp;	 */
+<i>94</i>&nbsp;	public Map&lt;Service,ServiceInfo&gt; getParticipationGroups() { 
+<i>95</i>&nbsp;		
+<b class="fc"><i>96</i>&nbsp;		Map&lt;Service,ServiceInfo&gt; result = new HashMap&lt;Service,ServiceInfo&gt;() ;</b>
+<i>97</i>&nbsp;		
+<b class="fc"><i>98</i>&nbsp;		for (Participation P : participations) {</b>
+<b class="fc"><i>99</i>&nbsp;			ServiceInfo info = result.get(P.service) ;</b>
+<b class="pc"><i>100</i>&nbsp;			if (info==null) {</b>
+<b class="fc"><i>101</i>&nbsp;				info = new ServiceInfo() ;</b>
+<b class="fc"><i>102</i>&nbsp;				result.put(P.service,info) ;</b>
+<i>103</i>&nbsp;			}
+<b class="fc"><i>104</i>&nbsp;			info.totalParticipationValue += P.service.price ;</b>
+<b class="fc"><i>105</i>&nbsp;			info.participations.add(P) ;</b>
+<b class="fc"><i>106</i>&nbsp;		}</b>
+<b class="fc"><i>107</i>&nbsp;		return result ; </b>
+<i>108</i>&nbsp;	}
+<i>109</i>&nbsp;	
+<i>110</i>&nbsp;	/**
+<i>111</i>&nbsp;	 * Return the set of discount token belonging to this customer.
+<i>112</i>&nbsp;	 */
+<b class="nc"><i>113</i>&nbsp;	public Set&lt;Discount&gt; getDiscounts() { return discounts ; }</b>
+<i>114</i>&nbsp;	
+<i>115</i>&nbsp;	/**
+<i>116</i>&nbsp;	 * Return the total discount this customer gets. It cannot exceed his
+<i>117</i>&nbsp;	 * participation value.
+<i>118</i>&nbsp;	 */
+<i>119</i>&nbsp;	public int getDiscountValue() {
+<b class="fc"><i>120</i>&nbsp;		int discount = 0 ;</b>
+<b class="fc"><i>121</i>&nbsp;		for (Discount D : discounts) {</b>
+<b class="pc"><i>122</i>&nbsp;			if (D.applicable(this)) discount += D.calcDiscount(this) ;</b>
+<b class="fc"><i>123</i>&nbsp;		}</b>
+<b class="fc"><i>124</i>&nbsp;		return Math.min(participationValue(),discount) ;</b>
+<i>125</i>&nbsp;	}
+<i>126</i>&nbsp;	
+<i>127</i>&nbsp;	/**
+<i>128</i>&nbsp;	 * Return the net contribution cost (after discount) the customer has to pay.
+<i>129</i>&nbsp;	 */
+<i>130</i>&nbsp;	public int getCostToPay() {
+<b class="fc"><i>131</i>&nbsp;		return participationValue() - getDiscountValue() ;</b>
+<i>132</i>&nbsp;	}
+<i>133</i>&nbsp;	
+<i>134</i>&nbsp;	/**
+<i>135</i>&nbsp;	 * Return the set of all services this customer participates.
+<i>136</i>&nbsp;	 */
+<i>137</i>&nbsp;	public Set&lt;Service&gt; getServices() {
+<b class="nc"><i>138</i>&nbsp;		return getParticipationGroups().keySet() ;</b>
+<i>139</i>&nbsp;	}
+<i>140</i>&nbsp;
+<i>141</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-02-28 10:53</div>
+</div>
+</body>
+</html>

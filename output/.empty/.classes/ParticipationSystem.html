@@ -1,0 +1,573 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ParticipationSystem</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">&lt;empty package name&gt;</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ParticipationSystem (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ParticipationSystem</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 25)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 210)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;import javax.swing.*; 
+<i>2</i>&nbsp;import java.awt.*; 
+<i>3</i>&nbsp;import java.awt.event.*;   
+<i>4</i>&nbsp;import java.util.*; 
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import Participation.*;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * This class provides a minimalistic user interface to the Foo System.
+<i>10</i>&nbsp; * This logic is implemented by the class {@link Participation.ApplicationLogic}.
+<i>11</i>&nbsp; *
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;public class ParticipationSystem extends JFrame 
+<i>14</i>&nbsp;	
+<i>15</i>&nbsp;	implements ActionListener, KeyListener
+<i>16</i>&nbsp;	
+<i>17</i>&nbsp;	{
+<i>18</i>&nbsp;	
+<i>19</i>&nbsp;	/**
+<i>20</i>&nbsp;	 * This variable holds the underlying business 
+<i>21</i>&nbsp;	 * logic.
+<i>22</i>&nbsp;	 */
+<i>23</i>&nbsp;	private ApplicationLogic appLogic  ;
+<i>24</i>&nbsp;	
+<i>25</i>&nbsp;	// Variables holding GUI components:
+<i>26</i>&nbsp;	
+<b class="nc"><i>27</i>&nbsp;	private static int TEXTWIDTH = 80 ;</b>
+<i>28</i>&nbsp;	
+<b class="nc"><i>29</i>&nbsp;	private JTextArea  textArea = new JTextArea (TEXTWIDTH,40);  </b>
+<b class="nc"><i>30</i>&nbsp;	private JScrollPane scrollpane = new JScrollPane(textArea);</b>
+<b class="nc"><i>31</i>&nbsp;	private JTextField commandField = new JTextField(TEXTWIDTH) ;</b>
+<i>32</i>&nbsp;	
+<b class="nc"><i>33</i>&nbsp;	private java.util.List&lt;String&gt; commandHistory = new LinkedList&lt;String&gt;() ;</b>
+<b class="nc"><i>34</i>&nbsp;	private int historyCursor = 0 ;</b>
+<i>35</i>&nbsp;	
+<i>36</i>&nbsp;	// Just a constructor:
+<i>37</i>&nbsp;	
+<b class="nc"><i>38</i>&nbsp;	public ParticipationSystem() {</b>
+<i>39</i>&nbsp;		
+<b class="nc"><i>40</i>&nbsp;		appLogic = new ApplicationLogic() ;</b>
+<i>41</i>&nbsp;		
+<i>42</i>&nbsp;		// Setting the look:
+<i>43</i>&nbsp;		
+<b class="nc"><i>44</i>&nbsp;		setSize(550, 500); </b>
+<b class="nc"><i>45</i>&nbsp;	    setTitle(&quot;Foo&#39;s Participation System --version 0&quot;); </b>
+<b class="nc"><i>46</i>&nbsp;	    setDefaultCloseOperation(EXIT_ON_CLOSE); // set the default close operation (exit when it gets closed)  </b>
+<b class="nc"><i>47</i>&nbsp;	    textArea.setFont(new Font(&quot;Lucida Sans Typewriter&quot;, Font.PLAIN, 20)) ;</b>
+<b class="nc"><i>48</i>&nbsp;	    commandField.setFont(new Font(&quot;Lucida Sans Typewriter&quot;, Font.BOLD, 20)) ;</b>
+<b class="nc"><i>49</i>&nbsp;	    textArea.setBackground(Color.BLACK) ;</b>
+<b class="nc"><i>50</i>&nbsp;	    textArea.setForeground(Color.WHITE) ;</b>
+<b class="nc"><i>51</i>&nbsp;	    textArea.setText(&quot;This is NOT a production system. This system is for training.\n&quot;</b>
+<i>52</i>&nbsp;	    		       + &quot;Despite being minimalistic, it has the typical architecture\n&quot;
+<i>53</i>&nbsp;	    		       + &quot;of a business application: it has an application logic layer,\n&quot;
+<i>54</i>&nbsp;	    		       + &quot;with a persistence layer underneath, and a user interface layer\n&quot;
+<i>55</i>&nbsp;	    		       + &quot;on top of it. Enjoy.\n\n&quot;
+<i>56</i>&nbsp;	    		       + &quot;Author: wishnu@cs.uu.nl\n\n&quot;
+<i>57</i>&nbsp;	    		       + &quot;Type help to list available commands.&quot; ) ;
+<i>58</i>&nbsp;	    	   
+<i>59</i>&nbsp;	    // Plugging GUI components:
+<b class="nc"><i>60</i>&nbsp;	    Container contentPane = getContentPane() ;</b>
+<b class="nc"><i>61</i>&nbsp;	    contentPane.setLayout(new BorderLayout()); // the BorderLayout bit makes it fill it automatically  </b>
+<b class="nc"><i>62</i>&nbsp;	    contentPane.add(scrollpane,BorderLayout.CENTER);  </b>
+<b class="nc"><i>63</i>&nbsp;	    contentPane.add(commandField,BorderLayout.SOUTH) ;</b>
+<i>64</i>&nbsp;	    
+<b class="nc"><i>65</i>&nbsp;	    textArea.setEditable(false) ;</b>
+<i>66</i>&nbsp;   
+<b class="nc"><i>67</i>&nbsp;	    commandField.addActionListener(this) ;</b>
+<b class="nc"><i>68</i>&nbsp;	    commandField.addKeyListener(this) ;</b>
+<i>69</i>&nbsp;	    
+<i>70</i>&nbsp;	}
+<i>71</i>&nbsp;		
+<i>72</i>&nbsp;	/**
+<i>73</i>&nbsp;	 * This reacts to the command typed in the command box.
+<i>74</i>&nbsp;	 */
+<i>75</i>&nbsp;	//@Override
+<i>76</i>&nbsp;	public void actionPerformed(ActionEvent event) {
+<i>77</i>&nbsp;		// Calling a command interpreter here:
+<b class="nc"><i>78</i>&nbsp;		commandInterpreter(commandField.getText()) ;</b>
+<b class="nc"><i>79</i>&nbsp;		commandField.setText(&quot;&quot;) ;</b>
+<b class="nc"><i>80</i>&nbsp;		commandField.repaint();</b>
+<i>81</i>&nbsp;	}
+<i>82</i>&nbsp;	
+<i>83</i>&nbsp;	static private final String CLEAR = &quot;clear&quot; ;
+<i>84</i>&nbsp;	static private final String HELP = &quot;help&quot; ;
+<i>85</i>&nbsp;	static private final String ADD = &quot;add&quot; ;
+<i>86</i>&nbsp;	static private final String REMOVE = &quot;rem&quot; ;
+<i>87</i>&nbsp;	static private final String SHOW = &quot;show&quot; ;
+<i>88</i>&nbsp;	static private final String EXEC = &quot;exec&quot; ;
+<i>89</i>&nbsp;	static private final String CUST = &quot;c&quot; ;
+<i>90</i>&nbsp;	static private final String SERVICE = &quot;s&quot; ;
+<i>91</i>&nbsp;	static private final String PARTICIPATION = &quot;p&quot; ;
+<i>92</i>&nbsp;	static private final String DISCOUNT = &quot;d&quot; ;
+<i>93</i>&nbsp;	static private final String DISCOUNT_1000 = ApplicationLogic.D1000 ;
+<i>94</i>&nbsp;	static private final String DISCOUNT_5p = ApplicationLogic.D5p ;
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;	/**
+<i>97</i>&nbsp;	 * This interpret the commands, and calls the right functions 
+<i>98</i>&nbsp;	 * based on the given command. It also handles error messaging.
+<i>99</i>&nbsp;	 */
+<i>100</i>&nbsp;	private void commandInterpreter(String input) {
+<i>101</i>&nbsp;		
+<b class="nc"><i>102</i>&nbsp;		commandHistory.add(input) ;</b>
+<b class="nc"><i>103</i>&nbsp;		historyCursor=0 ;</b>
+<i>104</i>&nbsp;		
+<b class="nc"><i>105</i>&nbsp;		String[] args = input.split(&quot;:&quot;) ;</b>
+<b class="nc"><i>106</i>&nbsp;		if (args.length==0) return ;</b>
+<i>107</i>&nbsp;		
+<b class="nc"><i>108</i>&nbsp;		String command = args[0] ;</b>
+<i>109</i>&nbsp;		
+<b class="nc"><i>110</i>&nbsp;		if (command.equals(CLEAR)) { clear() ; return ; }</b>
+<i>111</i>&nbsp;		
+<b class="nc"><i>112</i>&nbsp;		echo(&quot;&gt; &quot; + input) ;</b>
+<i>113</i>&nbsp;
+<b class="nc"><i>114</i>&nbsp;		if (command.equals(HELP))  { help() ; return ; }</b>
+<i>115</i>&nbsp;		
+<b class="nc"><i>116</i>&nbsp;		if (command.equals(SHOW)) {</b>
+<i>117</i>&nbsp;			
+<b class="nc"><i>118</i>&nbsp;			if (args.length==1) { echo(&quot;(!) Show what?&quot;) ; return ; }</b>
+<b class="nc"><i>119</i>&nbsp;			if (args.length==2) { echo(&quot;(!) Specify target.&quot;) ; return ; }</b>
+<i>120</i>&nbsp;			
+<b class="nc"><i>121</i>&nbsp;			if (args[1].equals(CUST)) {</b>
+<b class="nc"><i>122</i>&nbsp;				if (args[2].equals(&quot;*&quot;)) { showAllCustomers() ; return ; }</b>
+<b class="nc"><i>123</i>&nbsp;				showCustomer(args[2]) ;</b>
+<i>124</i>&nbsp;				return ;
+<i>125</i>&nbsp;			}
+<b class="nc"><i>126</i>&nbsp;			if (args[1].equals(SERVICE)) {</b>
+<b class="nc"><i>127</i>&nbsp;				showAllServices() ; return ; </b>
+<i>128</i>&nbsp;			}
+<b class="nc"><i>129</i>&nbsp;			echo(UNKNOWN_SELECTOR) ; return ;</b>
+<i>130</i>&nbsp;		}
+<b class="nc"><i>131</i>&nbsp;		else if(command.equals(ADD)) {</b>
+<b class="nc"><i>132</i>&nbsp;			if (args.length==1) { echo(&quot;(!) Add what?&quot;) ; return ; }</b>
+<b class="nc"><i>133</i>&nbsp;			if (args[1].equals(CUST)) {</b>
+<b class="nc"><i>134</i>&nbsp;				if (args.length&lt;4) { echo(&quot;(!) Specify name AND email.&quot;) ; return ; }</b>
+<b class="nc"><i>135</i>&nbsp;				addCustomer(args[2],args[3]) ;</b>
+<i>136</i>&nbsp;				return ;
+<i>137</i>&nbsp;			}
+<b class="nc"><i>138</i>&nbsp;			if (args[1].equals(SERVICE)) {</b>
+<b class="nc"><i>139</i>&nbsp;				if (args.length&lt;4) { echo(&quot;(!) Specify name AND price.&quot;) ; return ; }</b>
+<b class="nc"><i>140</i>&nbsp;				addService(args[2],args[3]) ;</b>
+<i>141</i>&nbsp;				return ;
+<i>142</i>&nbsp;			}
+<b class="nc"><i>143</i>&nbsp;			if (args[1].equals(PARTICIPATION)) {</b>
+<b class="nc"><i>144</i>&nbsp;				if (args.length&lt;4) { echo(&quot;(!) Specify customer AND service ID.&quot;) ; return ; }</b>
+<b class="nc"><i>145</i>&nbsp;				addParticipation(args[2],args[3]) ;</b>
+<i>146</i>&nbsp;				return ;
+<i>147</i>&nbsp;			}
+<b class="nc"><i>148</i>&nbsp;			if (args[1].equals(DISCOUNT)) {</b>
+<b class="nc"><i>149</i>&nbsp;				if (args.length&lt;4) { echo(&quot;(!) Specify customer AND discount code.&quot;) ; return ; }</b>
+<b class="nc"><i>150</i>&nbsp;				awardDiscount(args[2],args[3]) ;</b>
+<i>151</i>&nbsp;				return ;
+<i>152</i>&nbsp;			}
+<b class="nc"><i>153</i>&nbsp;			echo(UNKNOWN_SELECTOR) ; return ;</b>
+<i>154</i>&nbsp;		}
+<b class="nc"><i>155</i>&nbsp;		else if(command.equals(REMOVE)) {</b>
+<b class="nc"><i>156</i>&nbsp;			if (args.length==1) { echo(&quot;(!) Remove what?&quot;) ; return ; }</b>
+<b class="nc"><i>157</i>&nbsp;			if (args.length==2) { echo(&quot;(!) Specify removal target.&quot;) ; return ; }</b>
+<i>158</i>&nbsp;			
+<b class="nc"><i>159</i>&nbsp;			if (args[1].equals(CUST)) {</b>
+<b class="nc"><i>160</i>&nbsp;				removeCustomer(args[2]) ;</b>
+<i>161</i>&nbsp;				return ;
+<i>162</i>&nbsp;			}
+<b class="nc"><i>163</i>&nbsp;			if (args[1].equals(SERVICE)) {</b>
+<b class="nc"><i>164</i>&nbsp;				removeService(args[2]) ;</b>
+<i>165</i>&nbsp;				return ;
+<i>166</i>&nbsp;			}
+<b class="nc"><i>167</i>&nbsp;			if (args[1].equals(PARTICIPATION)) {</b>
+<b class="nc"><i>168</i>&nbsp;				if (args.length&lt;4) { echo(&quot;(!) Specify service ID.&quot;) ; return ; }</b>
+<b class="nc"><i>169</i>&nbsp;				dropParticipation(args[2],args[3]) ;</b>
+<i>170</i>&nbsp;				return ;
+<i>171</i>&nbsp;			}			
+<b class="nc"><i>172</i>&nbsp;			if (args[1].equals(DISCOUNT)) {</b>
+<b class="nc"><i>173</i>&nbsp;				if (args.length&lt;4) { echo(&quot;(!) Specify customer AND discount code.&quot;) ; return ; }</b>
+<b class="nc"><i>174</i>&nbsp;				removeDiscount(args[2],args[3]) ;</b>
+<i>175</i>&nbsp;				return ;
+<i>176</i>&nbsp;			}
+<b class="nc"><i>177</i>&nbsp;			echo(UNKNOWN_SELECTOR) ; return ;</b>
+<i>178</i>&nbsp;		}
+<i>179</i>&nbsp;		
+<b class="nc"><i>180</i>&nbsp;		if (command.equals(EXEC))  { </b>
+<b class="nc"><i>181</i>&nbsp;			resolve() ;</b>
+<i>182</i>&nbsp;			return ; 
+<i>183</i>&nbsp;		}
+<i>184</i>&nbsp;
+<i>185</i>&nbsp;		
+<b class="nc"><i>186</i>&nbsp;		echo(UNKNOWN_COMMAND) ;</b>
+<i>187</i>&nbsp;	}
+<i>188</i>&nbsp;	
+<i>189</i>&nbsp;	//
+<i>190</i>&nbsp;	// These are the functions that implement various commands.
+<i>191</i>&nbsp;	//
+<i>192</i>&nbsp;	
+<i>193</i>&nbsp;	private void echo(String s) {
+<b class="nc"><i>194</i>&nbsp;		String txt = textArea.getText() ;</b>
+<b class="nc"><i>195</i>&nbsp;		txt = txt + &quot;\n&quot; + s  ;</b>
+<b class="nc"><i>196</i>&nbsp;		textArea.setText(txt) ;</b>
+<b class="nc"><i>197</i>&nbsp;		textArea.repaint()  ;</b>
+<i>198</i>&nbsp;	}
+<i>199</i>&nbsp;	
+<i>200</i>&nbsp;	/**
+<i>201</i>&nbsp;	 * Implementing the command to clear the screen.
+<i>202</i>&nbsp;	 */
+<i>203</i>&nbsp;	private void clear(){
+<b class="nc"><i>204</i>&nbsp;		textArea.setText(&quot;&quot;) ;</b>
+<b class="nc"><i>205</i>&nbsp;		textArea.repaint()  ;</b>
+<i>206</i>&nbsp;	}
+<i>207</i>&nbsp;
+<i>208</i>&nbsp;	// Helper
+<i>209</i>&nbsp;	private String padRight(String s, int width) {
+<b class="nc"><i>210</i>&nbsp;		if (s.length()&gt;=width) return s.substring(0,width) ;</b>
+<b class="nc"><i>211</i>&nbsp;		String t = &quot;&quot; + s ;</b>
+<b class="nc"><i>212</i>&nbsp;		for (int i=t.length(); i&lt;width; i++) t = t + &quot; &quot; ;</b>
+<b class="nc"><i>213</i>&nbsp;		return t ;		</b>
+<i>214</i>&nbsp;	}
+<i>215</i>&nbsp;	
+<i>216</i>&nbsp;	// Helper
+<i>217</i>&nbsp;	private String padLeft(String s, int width) {
+<b class="nc"><i>218</i>&nbsp;		if (s.length()&gt;=width) return s.substring(0,width) ;</b>
+<b class="nc"><i>219</i>&nbsp;		String t = &quot;&quot; + s ;</b>
+<b class="nc"><i>220</i>&nbsp;		for (int i=t.length(); i&lt;width; i++) t = &quot; &quot; + t ;</b>
+<b class="nc"><i>221</i>&nbsp;		return t ;		</b>
+<i>222</i>&nbsp;	}
+<i>223</i>&nbsp;	
+<i>224</i>&nbsp;	// Helper
+<b class="nc"><i>225</i>&nbsp;	private float cent2euro(int cent) { return (float) cent / 100f	; }</b>
+<i>226</i>&nbsp;	
+<i>227</i>&nbsp;	static private final String COLLON = &quot; : &quot; ;
+<i>228</i>&nbsp;	static private final String CLN = &quot;:&quot; ;
+<i>229</i>&nbsp;	static private final String COMMA = &quot; , &quot;  ;
+<i>230</i>&nbsp;	static private final String TAB = &quot;   &quot; ;
+<i>231</i>&nbsp;	static private final String DONE = &quot;Done&quot; ;
+<i>232</i>&nbsp;	static private final String ARG_INCOMPL = &quot;(!) Some argument(s) missing.&quot; ;
+<i>233</i>&nbsp;	static private final String UNKNOWN_SELECTOR = &quot;(!) Unknown selector.&quot; ;
+<i>234</i>&nbsp;	static private final String UNKNOWN_COMMAND  = &quot;(!) Unknown command.&quot; ;
+<i>235</i>&nbsp;	static private final String PASS_PINT = &quot;(!) A positive integer is needed.&quot; ;
+<i>236</i>&nbsp;	
+<i>237</i>&nbsp;	/**
+<i>238</i>&nbsp;	 * Implementing the command for printing help to the screen.
+<i>239</i>&nbsp;	 */
+<i>240</i>&nbsp;	private void help() {
+<b class="nc"><i>241</i>&nbsp;		String out = &quot;\n&quot;</b>
+<i>242</i>&nbsp;			+ &quot;COMMANDS:\n\n&quot;
+<i>243</i>&nbsp;			+ TAB + &quot;help\n&quot;
+<i>244</i>&nbsp;			+ TAB + CLEAR + &quot;\n&quot;
+<i>245</i>&nbsp;			+ TAB + SHOW + CLN + &quot;(c|s)&quot; + CLN + &quot;(*|id)&quot; + &quot;\n&quot;
+<i>246</i>&nbsp;			+ TAB + REMOVE + CLN + &quot;(c|s)&quot; + CLN + &quot;id&quot; + &quot;\n&quot;
+<i>247</i>&nbsp;			+ TAB + REMOVE + CLN + &quot;p&quot; + CLN + &quot;customerId&quot; + CLN + &quot;serviceId\n&quot;
+<i>248</i>&nbsp;			+ TAB + ADD + CLN + &quot;c&quot; + CLN + &quot;name&quot; + CLN + &quot;email&quot; + &quot;\n&quot;
+<i>249</i>&nbsp;			+ TAB + ADD + CLN + &quot;s&quot; + CLN + &quot;name&quot; + CLN + &quot;daily contribution cost (in euro-cent)&quot; + &quot;\n&quot;
+<i>250</i>&nbsp;			+ TAB + ADD + CLN + &quot;p&quot; + CLN + &quot;customerId&quot; + CLN + &quot;serviceId\n&quot; 
+<i>251</i>&nbsp;			+ TAB + EXEC + &quot;\n&quot;
+<i>252</i>&nbsp;			+ &quot;\n&quot; + TAB + &quot;Just close the window to quit. Your data is persisted.\n&quot; ;
+<b class="nc"><i>253</i>&nbsp;		echo(out) ;</b>
+<i>254</i>&nbsp;	}
+<i>255</i>&nbsp;	
+<i>256</i>&nbsp;	/**
+<i>257</i>&nbsp;	 * Implementing the command for showing all customers.
+<i>258</i>&nbsp;	 */
+<i>259</i>&nbsp;	private void showAllCustomers(){
+<b class="nc"><i>260</i>&nbsp;		java.util.List&lt;Customer&gt; customers = appLogic.getCustomers() ;</b>
+<b class="nc"><i>261</i>&nbsp;		String out = &quot;ALL CUSTOMERS: (&quot; + customers.size() + &quot;)\n&quot; ;</b>
+<b class="nc"><i>262</i>&nbsp;		for (Customer c : customers) </b>
+<b class="nc"><i>263</i>&nbsp;			out = out </b>
+<b class="nc"><i>264</i>&nbsp;				+ padRight(&quot;&quot; + c.getID(), 3)</b>
+<i>265</i>&nbsp;			    + COLLON
+<b class="nc"><i>266</i>&nbsp;			    + padRight(c.getName(),16)</b>
+<i>267</i>&nbsp;			    + COLLON 
+<b class="nc"><i>268</i>&nbsp;			    + padRight(c.getEmail(),24)</b>
+<i>269</i>&nbsp;			    + COLLON
+<b class="nc"><i>270</i>&nbsp;			    + padRight(&quot;&quot; + cent2euro(c.participationValue()),10)</b>
+<i>271</i>&nbsp;			    + &quot;\n&quot; ;			    
+<b class="nc"><i>272</i>&nbsp;		echo(out) ;</b>
+<i>273</i>&nbsp;	}
+<i>274</i>&nbsp;	
+<i>275</i>&nbsp;	/**
+<i>276</i>&nbsp;	 * Implementing the command for showing the data of a particular customer.
+<i>277</i>&nbsp;	 */
+<i>278</i>&nbsp;	private void showCustomer(String custID){
+<i>279</i>&nbsp;		Integer id_ ;
+<b class="nc"><i>280</i>&nbsp;		id_ = parseInt(custID) ;</b>
+<b class="nc"><i>281</i>&nbsp;		if (id_ == null  ||  id_&lt;0) { echo(PASS_PINT) ; return ; }</b>
+<i>282</i>&nbsp;		
+<b class="nc"><i>283</i>&nbsp;		Customer c = appLogic.findCustomer(id_) ;</b>
+<i>284</i>&nbsp;		
+<b class="nc"><i>285</i>&nbsp;		if (c==null) { echo(&quot;This customer does not exists.&quot;) ; return ; }		</b>
+<i>286</i>&nbsp;	
+<b class="nc"><i>287</i>&nbsp;		String out = c.getName() + &quot; (ID &quot; + c.getID() + &quot;)\n&quot; ;</b>
+<b class="nc"><i>288</i>&nbsp;		out += &quot;Email: &quot; + c.getEmail() + &quot;\n&quot;;</b>
+<b class="nc"><i>289</i>&nbsp;		out += &quot;Total: &quot; + c.getParticipations().size() + &quot; participations, value; &quot; </b>
+<b class="nc"><i>290</i>&nbsp;			+ cent2euro(c.participationValue())  + &quot; euro\n&quot; ;</b>
+<b class="nc"><i>291</i>&nbsp;		out += &quot;Participations:\n&quot; ;</b>
+<b class="nc"><i>292</i>&nbsp;		Map&lt;Service,Customer.ServiceInfo&gt; M = c.getParticipationGroups() ;</b>
+<b class="nc"><i>293</i>&nbsp;		for (Service S : M.keySet() ) {</b>
+<b class="nc"><i>294</i>&nbsp;			int n = M.get(S).participations.size() ;</b>
+<b class="nc"><i>295</i>&nbsp;			int value = n * S.getPrice() ;</b>
+<b class="nc"><i>296</i>&nbsp;			out += TAB</b>
+<b class="nc"><i>297</i>&nbsp;				+ &quot;Sevice &quot; + S.getID() + &quot;, &quot; </b>
+<i>298</i>&nbsp;				+  n + &quot; participations, value: &quot;
+<b class="nc"><i>299</i>&nbsp;				+  cent2euro(value) + &quot; euro\n&quot; ;</b>
+<b class="nc"><i>300</i>&nbsp;		}</b>
+<b class="nc"><i>301</i>&nbsp;		out += &quot;Discounts:\n&quot; ;</b>
+<b class="nc"><i>302</i>&nbsp;		for (Discount D : c.getDiscounts()) {</b>
+<b class="nc"><i>303</i>&nbsp;			out += TAB</b>
+<b class="nc"><i>304</i>&nbsp;				+ D.getClass().getSimpleName() ;</b>
+<b class="nc"><i>305</i>&nbsp;			if (D.applicable(c)) {</b>
+<b class="nc"><i>306</i>&nbsp;				out += &quot;, applicable, value: &quot; </b>
+<b class="nc"><i>307</i>&nbsp;					+ cent2euro(D.calcDiscount(c)) + &quot; euro&quot; ;</b>
+<i>308</i>&nbsp;			}
+<b class="nc"><i>309</i>&nbsp;			out += &quot;\n&quot; ;</b>
+<b class="nc"><i>310</i>&nbsp;		}</b>
+<b class="nc"><i>311</i>&nbsp;		echo(out) ;</b>
+<i>312</i>&nbsp;	}
+<i>313</i>&nbsp;
+<i>314</i>&nbsp;	/**
+<i>315</i>&nbsp;	 * Implementing the command for showing all services.
+<i>316</i>&nbsp;	 */
+<i>317</i>&nbsp;	private void showAllServices(){
+<b class="nc"><i>318</i>&nbsp;		java.util.List&lt;Service&gt; services = appLogic.getServices() ;</b>
+<b class="nc"><i>319</i>&nbsp;		String out = &quot;ALL SERVICES: (&quot; + services.size() + &quot;)\n&quot; ;</b>
+<b class="nc"><i>320</i>&nbsp;		for (Service s : services) </b>
+<b class="nc"><i>321</i>&nbsp;			out = out </b>
+<b class="nc"><i>322</i>&nbsp;				+ padRight(&quot;&quot; + s.getID(), 3)</b>
+<i>323</i>&nbsp;			    + COLLON
+<b class="nc"><i>324</i>&nbsp;			    + padRight(s.getName(),24)</b>
+<i>325</i>&nbsp;			    + COLLON 
+<b class="nc"><i>326</i>&nbsp;			    + padLeft(&quot;&quot; + s.getPrice(),10)</b>
+<i>327</i>&nbsp;			    + &quot;\n&quot; ;		    
+<b class="nc"><i>328</i>&nbsp;		echo(out) ;</b>
+<i>329</i>&nbsp;	}
+<i>330</i>&nbsp;	
+<i>331</i>&nbsp;	/**
+<i>332</i>&nbsp;	 * Implementing the command for adding a new customer.
+<i>333</i>&nbsp;	 */
+<i>334</i>&nbsp;	private void addCustomer(String name, String email) {
+<b class="nc"><i>335</i>&nbsp;		int r = appLogic.addCustomer(name,email) ;</b>
+<b class="nc"><i>336</i>&nbsp;		if (r&lt;0) echo(&quot;(!) This customer already exists.&quot;) ;</b>
+<b class="nc"><i>337</i>&nbsp;		else echo(DONE) ;</b>
+<i>338</i>&nbsp;	}
+<i>339</i>&nbsp;
+<i>340</i>&nbsp;	// Helper
+<i>341</i>&nbsp;	static private Integer parseInt(String  i) {
+<b class="nc"><i>342</i>&nbsp;		Integer x = null ;</b>
+<b class="nc"><i>343</i>&nbsp;		try { x = Integer.parseInt(i) ; }</b>
+<b class="nc"><i>344</i>&nbsp;		catch(Exception e) { } ;</b>
+<b class="nc"><i>345</i>&nbsp;		return x ;</b>
+<i>346</i>&nbsp;	}
+<i>347</i>&nbsp;	
+<i>348</i>&nbsp;	/**
+<i>349</i>&nbsp;	 * Implementing a command to remove a customer.
+<i>350</i>&nbsp;	 */
+<i>351</i>&nbsp;	private void removeCustomer(String id) {
+<i>352</i>&nbsp;		Integer id_ ;
+<b class="nc"><i>353</i>&nbsp;		id_ = parseInt(id) ;</b>
+<b class="nc"><i>354</i>&nbsp;		if (id_ == null  ||  id_&lt;0) { echo(PASS_PINT) ; return ; }</b>
+<b class="nc"><i>355</i>&nbsp;		if (!appLogic.custExists(id_)) { echo(&quot;(!) This customer does not exists.&quot;) ; return ; }</b>
+<i>356</i>&nbsp;		
+<b class="nc"><i>357</i>&nbsp;		appLogic.removeCustomer(id_) ;</b>
+<b class="nc"><i>358</i>&nbsp;		echo(DONE) ;		</b>
+<i>359</i>&nbsp;	}
+<i>360</i>&nbsp;	
+<i>361</i>&nbsp;	/**
+<i>362</i>&nbsp;	 * Implementing a command to add a new service. Price is the daily contribution cost of
+<i>363</i>&nbsp;	 * that service in euro-cent.
+<i>364</i>&nbsp;	 */
+<i>365</i>&nbsp;	private void addService(String name, String price) {
+<b class="nc"><i>366</i>&nbsp;		Integer pr = parseInt(price) ;</b>
+<b class="nc"><i>367</i>&nbsp;		if (pr==null || pr&lt;0) { echo(PASS_PINT) ; return ; }</b>
+<b class="nc"><i>368</i>&nbsp;		int r = appLogic.addService(name,pr) ;</b>
+<b class="nc"><i>369</i>&nbsp;		if (r&lt;0) echo(&quot;(!) This service already exists.&quot;) ;</b>
+<b class="nc"><i>370</i>&nbsp;		else echo(DONE) ;</b>
+<i>371</i>&nbsp;	}
+<i>372</i>&nbsp;	
+<i>373</i>&nbsp;	/**
+<i>374</i>&nbsp;	 * Implementing a command to remove a service.
+<i>375</i>&nbsp;	 */
+<i>376</i>&nbsp;	private void removeService(String id) {
+<i>377</i>&nbsp;		Integer id_ ;
+<b class="nc"><i>378</i>&nbsp;		id_ = parseInt(id) ;</b>
+<b class="nc"><i>379</i>&nbsp;		if (id_ == null  ||  id_&lt;0) { echo(PASS_PINT) ; return ; }</b>
+<b class="nc"><i>380</i>&nbsp;		if (!appLogic.serviceExists(id_)) { echo(&quot;(!) This service does not exists.&quot;) ; return ; }</b>
+<i>381</i>&nbsp;		 
+<b class="nc"><i>382</i>&nbsp;		appLogic.removeService(id_) ;</b>
+<b class="nc"><i>383</i>&nbsp;		echo(DONE) ;		</b>
+<i>384</i>&nbsp;	}
+<i>385</i>&nbsp;
+<i>386</i>&nbsp;	/**
+<i>387</i>&nbsp;	 * Implementing a command to add a new participation. The arguments are
+<i>388</i>&nbsp;	 * the id of the customer that gets the participation, and the id of
+<i>389</i>&nbsp;	 * the service he participates to.
+<i>390</i>&nbsp;	 */
+<i>391</i>&nbsp;	private void addParticipation(String custID, String serviceID){
+<b class="nc"><i>392</i>&nbsp;		Integer cid_ = parseInt(custID) ;</b>
+<b class="nc"><i>393</i>&nbsp;		Integer sid_ = parseInt(serviceID) ;</b>
+<b class="nc"><i>394</i>&nbsp;		if (cid_ == null  || sid_ == null</b>
+<b class="nc"><i>395</i>&nbsp;				|| cid_ &lt; 0</b>
+<b class="nc"><i>396</i>&nbsp;				|| sid_ &lt; 0 ) { echo(PASS_PINT) ; return ; }</b>
+<b class="nc"><i>397</i>&nbsp;		if (!appLogic.custExists(cid_)) { echo(&quot;(!) The customer does not exists.&quot;) ; return ; }</b>
+<b class="nc"><i>398</i>&nbsp;		if (!appLogic.serviceExists(sid_)) { echo(&quot;(!) The service does not exists.&quot;) ; return ; }</b>
+<b class="nc"><i>399</i>&nbsp;		appLogic.addParticipation(cid_, sid_) ;</b>
+<b class="nc"><i>400</i>&nbsp;		echo(DONE) ;</b>
+<i>401</i>&nbsp;
+<i>402</i>&nbsp;	}
+<i>403</i>&nbsp;	
+<i>404</i>&nbsp;	/**
+<i>405</i>&nbsp;	 * Implementing a command to drop a single participation.
+<i>406</i>&nbsp;	 */
+<i>407</i>&nbsp;	private void dropParticipation(String custID, String serviceID){
+<b class="nc"><i>408</i>&nbsp;		Integer cid_ = parseInt(custID) ;</b>
+<b class="nc"><i>409</i>&nbsp;		Integer sid_ = parseInt(serviceID) ;</b>
+<b class="nc"><i>410</i>&nbsp;		if (cid_ == null  || sid_ == null</b>
+<b class="nc"><i>411</i>&nbsp;				|| cid_ &lt; 0</b>
+<b class="nc"><i>412</i>&nbsp;				|| sid_ &lt; 0 ) { echo(PASS_PINT) ; return ; }</b>
+<b class="nc"><i>413</i>&nbsp;		if (!appLogic.custExists(cid_)) { echo(&quot;(!) The customer does not exists.&quot;) ; return ; }</b>
+<b class="nc"><i>414</i>&nbsp;		if (!appLogic.serviceExists(sid_)) { echo(&quot;(!) The service does not exists.&quot;) ; return ; }</b>
+<i>415</i>&nbsp;		
+<b class="nc"><i>416</i>&nbsp;		appLogic.dropParticipation(cid_,sid_) ;</b>
+<b class="nc"><i>417</i>&nbsp;		echo(DONE) ;</b>
+<i>418</i>&nbsp;
+<i>419</i>&nbsp;	}
+<i>420</i>&nbsp;	
+<i>421</i>&nbsp;	private void awardDiscount(String custID, String discountcode) {
+<b class="nc"><i>422</i>&nbsp;		Integer cid_ = parseInt(custID) ;</b>
+<b class="nc"><i>423</i>&nbsp;		if (cid_ == null  || cid_ &lt; 0) { echo(PASS_PINT) ; return ; }</b>
+<b class="nc"><i>424</i>&nbsp;		if (!appLogic.custExists(cid_)) { echo(&quot;(!) The customer does not exists.&quot;) ; return ; }</b>
+<b class="nc"><i>425</i>&nbsp;		if (!discountcode.equals(DISCOUNT_1000) &amp;&amp; !discountcode.equals(DISCOUNT_5p)) {</b>
+<b class="nc"><i>426</i>&nbsp;			echo(&quot;(!) Not a valid discount code.&quot;) ; return ;</b>
+<i>427</i>&nbsp;		}
+<b class="nc"><i>428</i>&nbsp;		appLogic.awardDiscount(cid_, discountcode) ;</b>
+<b class="nc"><i>429</i>&nbsp;		echo(DONE) ;</b>
+<i>430</i>&nbsp;	}
+<i>431</i>&nbsp;	
+<i>432</i>&nbsp;	
+<i>433</i>&nbsp;	private void removeDiscount(String custID, String discountcode) {
+<b class="nc"><i>434</i>&nbsp;		Integer cid_ = parseInt(custID) ;</b>
+<b class="nc"><i>435</i>&nbsp;		if (cid_ == null  || cid_ &lt; 0) { echo(PASS_PINT) ; return ; }</b>
+<b class="nc"><i>436</i>&nbsp;		if (!appLogic.custExists(cid_)) { echo(&quot;(!) The customer does not exists.&quot;) ; return ; }</b>
+<b class="nc"><i>437</i>&nbsp;		if (!discountcode.equals(DISCOUNT_1000) &amp;&amp; !discountcode.equals(DISCOUNT_5p)) {</b>
+<b class="nc"><i>438</i>&nbsp;			echo(&quot;(!) Not a valid discount code.&quot;) ; return ;</b>
+<i>439</i>&nbsp;		}
+<b class="nc"><i>440</i>&nbsp;		appLogic.remDiscount(cid_, discountcode) ;</b>
+<b class="nc"><i>441</i>&nbsp;		echo(DONE) ;</b>
+<i>442</i>&nbsp;	}
+<i>443</i>&nbsp;	
+<i>444</i>&nbsp;	private void resolve() {
+<b class="nc"><i>445</i>&nbsp;		Map&lt;Customer,Integer&gt; M = appLogic.resolve() ;</b>
+<b class="nc"><i>446</i>&nbsp;		String out = &quot;Resolving participations....\n&quot; ;</b>
+<b class="nc"><i>447</i>&nbsp;		for (Customer C : M.keySet()) {</b>
+<b class="nc"><i>448</i>&nbsp;			out += TAB + C.getName() + &quot; pays &quot; + cent2euro(M.get(C)) + &quot; euro\n&quot; ;</b>
+<b class="nc"><i>449</i>&nbsp;		}</b>
+<b class="nc"><i>450</i>&nbsp;		echo(out) ;</b>
+<i>451</i>&nbsp;	}
+<i>452</i>&nbsp;	/**
+<i>453</i>&nbsp;	 * React to arrow-up and arrow-down in the command box to scroll
+<i>454</i>&nbsp;	 * through commands history. (Yes we have that too! :)
+<i>455</i>&nbsp;	 */
+<i>456</i>&nbsp;	//@Override
+<i>457</i>&nbsp;	public void keyPressed(KeyEvent e) {
+<b class="nc"><i>458</i>&nbsp;		if (e.getKeyCode()==KeyEvent.VK_UP) {</b>
+<b class="nc"><i>459</i>&nbsp;			if (commandHistory.size()==0) return ;</b>
+<b class="nc"><i>460</i>&nbsp;			if (historyCursor==0) historyCursor = commandHistory.size()-1 ;</b>
+<b class="nc"><i>461</i>&nbsp;			else historyCursor-- ;</b>
+<b class="nc"><i>462</i>&nbsp;			commandField.setText(commandHistory.get(historyCursor)) ;</b>
+<b class="nc"><i>463</i>&nbsp;			commandField.repaint() ;</b>
+<i>464</i>&nbsp;		}
+<b class="nc"><i>465</i>&nbsp;		if (e.getKeyCode()==KeyEvent.VK_DOWN) {</b>
+<b class="nc"><i>466</i>&nbsp;			if (commandHistory.size()==0) return ;</b>
+<b class="nc"><i>467</i>&nbsp;			if (historyCursor&gt;=commandHistory.size()-1) historyCursor = 0 ;</b>
+<b class="nc"><i>468</i>&nbsp;			else historyCursor++ ;</b>
+<b class="nc"><i>469</i>&nbsp;			commandField.setText(commandHistory.get(historyCursor)) ;</b>
+<b class="nc"><i>470</i>&nbsp;			commandField.repaint() ;</b>
+<i>471</i>&nbsp;		}
+<i>472</i>&nbsp;	}
+<i>473</i>&nbsp;
+<i>474</i>&nbsp;	//@Override
+<i>475</i>&nbsp;	public void keyReleased(KeyEvent e) { }
+<i>476</i>&nbsp;
+<i>477</i>&nbsp;	//@Override
+<i>478</i>&nbsp;	public void keyTyped(KeyEvent e) { }
+<i>479</i>&nbsp;
+<i>480</i>&nbsp;	
+<i>481</i>&nbsp;	/**
+<i>482</i>&nbsp;	 * The main method that will launch this application.
+<i>483</i>&nbsp;	 */
+<i>484</i>&nbsp;	static public void main(String[] args) {
+<i>485</i>&nbsp;		//Persistence.DEBUG = true ;
+<b class="nc"><i>486</i>&nbsp;		ParticipationSystem sys = new ParticipationSystem() ;</b>
+<b class="nc"><i>487</i>&nbsp;		sys.setVisible(true) ;</b>
+<i>488</i>&nbsp;	}
+<i>489</i>&nbsp;
+<i>490</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-02-28 10:53</div>
+</div>
+</body>
+</html>

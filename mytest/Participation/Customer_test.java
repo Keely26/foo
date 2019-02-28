@@ -1,4 +1,5 @@
 package Participation;
+import com.sun.source.tree.NewArrayTree;
 import org.junit.* ;
 import java.util.* ;
 import static org.junit.Assert.* ;
@@ -17,20 +18,20 @@ public class Customer_test {
 	}
 
 	@Test
-	public void getParticipationValueTest(){
+	public void getParticipationValueTest() {
 		setupDB() ;
 		System.out.println("** Testing Customer getParticipationValue method");
 		ApplicationLogic SUT = new ApplicationLogic() ;
 
 		int c = SUT.addCustomer("name", "name@email.com");
 		int serviceOne = SUT.addService("service one", 300);
-		int serviceTwo = SUT.addService("service two", 305);
+		int serviceTwo = SUT.addService("service two", 300);
 
 		SUT.addParticipation(c, serviceOne);
 		SUT.addParticipation(c, serviceTwo);
 		Customer C = SUT.findCustomer(c);
 		int actual = C.participationValue();
-		assertEquals(605, actual);
+		assertEquals(600, actual);
 	}
 
 	@Test
@@ -39,16 +40,26 @@ public class Customer_test {
 		System.out.println("** Testing Customer getDiscountValue method");
 		ApplicationLogic SUT = new ApplicationLogic() ;
 		int c = SUT.addCustomer("name", "name@email.com");
-		int serviceOne = SUT.addService("service one", 300);
-		int serviceTwo = SUT.addService("service two", 305);
+		int g = SUT.addCustomer("guest", "guest@email.com");
+		int serviceOne = SUT.addService("service one", 100000);
+		int serviceTwo = SUT.addService("service two", 0);
+		int serviceO = SUT.addService("service 1", 0);
+		int serviceT = SUT.addService("service 2", 0);
 		SUT.addParticipation(c, serviceOne);
 		SUT.addParticipation(c, serviceTwo);
 		Discount D = new Testing_Discount();
+		SUT.addParticipation(g, serviceO);
+		SUT.addParticipation(g, serviceT);
+		Discount Dg = new Testing_Discount();
+
+		SUT.awardDiscount(c, "D1000eur");
 
 		Customer C = SUT.findCustomer(c);
+		C.discounts.add(Dg);
 		C.discounts.add(D);
 		int actual = C.getDiscountValue();
-		assertEquals(100, actual);
+		assertEquals(5400, actual);
+
 	}
 
 	@Test
@@ -58,14 +69,22 @@ public class Customer_test {
 		ApplicationLogic SUT = new ApplicationLogic() ;
 		int c = SUT.addCustomer("name", "name@email.com");
 
-		int serviceOne = SUT.addService("service one", 300);
+		int serviceOne = SUT.addService("service one", 201);
 		Discount D = new Testing_Discount();
 		SUT.addParticipation(c, serviceOne);
 		Customer C = SUT.findCustomer(c);
 		C.discounts.add(D);
 
-		int actualServices = C.getCostToPay();
-		assertEquals(200, actualServices);
+		int g = SUT.addCustomer("guest", "name@email.com");
+
+		int serviceTwo = SUT.addService("service two", 199);
+		Discount D2 = new Testing_Discount();
+		SUT.addParticipation(c, serviceTwo);
+		Customer G = SUT.findCustomer(g);
+		G.discounts.add(D2);
+
+		int actualServices = G.getCostToPay();
+		assertEquals(0, actualServices);
 	}
 
 	@Test
@@ -75,18 +94,23 @@ public class Customer_test {
 		ApplicationLogic SUT = new ApplicationLogic() ;
 
 		Customer C = new Customer(0,"name", "name@email.com");
-		Service serviceOne = new Service(1, "service one", 300);
-		Service serviceTwo = new Service(2, "service two", 350);
+
+		Service serviceOne = new Service(1, "service one", 100);
+		Service serviceTwo = new Service(2, "service two", 150);
+		Service serviceThree = new Service(3, "service three", 150);
+
 		Discount D = new Testing_Discount();
 		C.participations.add(new Participation(C, serviceOne));
+		C.participations.add(new Participation(C, serviceOne));
+		C.participations.add(new Participation(C, serviceTwo));
 		C.participations.add(new Participation(C, serviceTwo));
 		C.discounts.add(D);
 
 		Map<Service, Customer.ServiceInfo> actual = C.getParticipationGroups();
-		Map<Service, Integer> expected = new HashMap<>();
-		expected.put(serviceOne, 1);
-		expected.put(serviceTwo, 1);
+
 		assertTrue(actual.containsKey(serviceOne));
 		assertTrue(actual.containsKey(serviceTwo));
+		assertFalse(actual.containsKey(serviceThree));
+
 	}
 }
